@@ -1,7 +1,4 @@
 from django.db import models
-from django.utils.timezone import now
-
-import Auth.models
 
 
 # Create your models here.
