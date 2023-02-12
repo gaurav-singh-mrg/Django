@@ -11,8 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
+    <title>page</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -145,25 +144,27 @@ button{
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form action={{ButtonAction}} method={{method}}>
+    {% csrf_token %}
+    <h3>{{Header}}</h3>
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Enter your username" id="username">
+
+    <label for="username">Email ID</label>
+    <input type="text" name="email" placeholder="Enter you email id" id="email">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password" id="password">
+    <input type="submit" name={{ButtonName}}>
+    <div class="social">
+        <div class="go"><i class="fab fa-google"></i> Google</div>
+        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
     </div>
-    <form>
-        <h3>{{Header}}</h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
-
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
-
-        <button>{{ButtonName}} </button>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
-    </form>
+</form>
 </body>
 </html>
 <!-- partial -->
