@@ -29,11 +29,14 @@ def SigninAction(request):
     return render(request, "Login.html")
 
 
-class simpleauth(TemplateView):
-    template_name = "MainTemplate.html"
+class index(TemplateView):
+    template_name = "index.html"
 
     def get_context_data(self, **kwargs):
-        context = super.get_context_date(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['Title'] = "Welcome,Homepage"
+        # context['Header'] = 'Login Here'
+        # context['ButtonName'] = 'Login'
         return context
 
 
