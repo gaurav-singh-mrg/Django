@@ -23,7 +23,7 @@ def SigninAction(request):
         print(username, email, password)
         myuser = User.objects.create_user(username, email, password)
         # myuser.first_user =
-        messages.succes(request, 'Account created successfully')
+        # messages.succes(request, 'Account created successfully')
         return redirect(request, 'Login')
 
     return render(request, "Login.html")
