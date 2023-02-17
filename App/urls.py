@@ -27,7 +27,7 @@ urlpatterns = {
 
     # path('test', TemplateView.as_view(template_name="AuthTemplate.html",
     #      extra_context={'title': 'Welcome to gaurav'}))
-    path('test', Auth.views.auth.as_view()),
+    # path('test', Auth.views.auth.as_view()),
     # Auth Urls END
     path("accounts/", include("django.contrib.auth.urls"))
 }

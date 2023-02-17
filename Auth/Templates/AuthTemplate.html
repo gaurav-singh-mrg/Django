@@ -148,7 +148,7 @@ button{
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form action={{ButtonAction}} method={{method}}>
+<form method=post>
     {% csrf_token %}
     <h3>{{Header}}</h3>
     <label for="username">Username</label>
@@ -159,7 +159,7 @@ button{
 
     <label for="password">Password</label>
     <input type="password" name="password" placeholder="Password" id="password">
-    <input type="submit" name={{ButtonName}}>
+    <input type="submit" name='Signin'>
     <div class="social">
         <div class="go"><i class="fab fa-google"></i> Google</div>
         <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
