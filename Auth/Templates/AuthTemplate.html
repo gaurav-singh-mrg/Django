@@ -153,10 +153,10 @@ button{
     <h3>{{Header}}</h3>
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="Enter your username" id="username">
-
-    <label for="username">Email ID</label>
+    {% if showEmailField %}
+    <label for="Email">Email ID</label>
     <input type="text" name="email" placeholder="Enter you email id" id="email">
-
+    {% endif %}
     <label for="password">Password</label>
     <input type="password" name="password" placeholder="Password" id="password">
     <input type="submit" name='Signin'>

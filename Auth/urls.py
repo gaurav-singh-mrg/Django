@@ -6,9 +6,10 @@ from Auth import views
 urlpatterns = [
     # Auth Urls Start
     # path('', Auth.views.simpleauth.as_view()),
-    path('', Auth.views.signin, name='signin'),
-    path('signin', Auth.views.signin, name='signin'),
-    path('login', Auth.views.Login, name='login'),
+    # path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', Auth.views.index, name='index'),
+    path('signin/', Auth.views.signin, name='signin'),
+    path('login/', Auth.views.Login, name='login'),
     # path('login/', Auth.views.auth.as_view()),
     # path('signin/', TemplateView.as_view(template_name="AuthTemplate.html",
     #                                      extra_context={'Title': 'Welcome, Please SignIn',
