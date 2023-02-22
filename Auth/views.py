@@ -1,14 +1,7 @@
-import http
-import sys
-
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.http import response
-from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as ln
-
-import Auth.apps
 
 
 # Create your views here.
@@ -22,7 +15,7 @@ def Login(request):
             ln(request, user)
             return render(request, "index.html")
         return redirect('')
-
+    signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
     ButtonName = 'Login'
@@ -52,7 +45,7 @@ def signin(request):
             myuser = User.objects.create_user(username, email, password)
             return render(request, "Login.html")
 
-    Title = "W̵̵̵elcome,Please signin"
+    Title = "Welcome,Please signin"
     Header = 'Sign In'
     ButtonName = 'Signin'
     signup = True
@@ -60,7 +53,7 @@ def signin(request):
 
 
 def index(request):
-    messages.info(request, 'Weclome Please login', fail_silently=True)
+    messages.info(request, 'Welcome Please login', fail_silently=True)
     Title = "Welcome, Homepage"
     return render(request, 'index.html', locals())
 
@@ -93,5 +86,5 @@ def index(request):
 #             print(username, email, password)
 #             myuser = User.objects.create_user(username, email, password)
 #             # myuser.first_user =
-#             # messages.succes(request, 'Account created successfully')
+#             # messages.success(request, 'Account created successfully')
 #             return redirect(request, 'Login')

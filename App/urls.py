@@ -22,9 +22,9 @@ from Auth import urls
 
 urlpatterns = {
     path('admin/', admin.site.urls),
+    path('', Auth.views.index),
     # Auth Urls Start
-    path('', include(Auth.urls)),
-
+    path('auth/', include(Auth.urls)),
     # path('test', TemplateView.as_view(template_name="AuthTemplate.html",
     #      extra_context={'title': 'Welcome to gaurav'}))
     # path('test', Auth.views.auth.as_view()),
