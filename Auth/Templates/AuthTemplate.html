@@ -60,7 +60,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 520px;
+    height: auto;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -72,6 +72,7 @@ form{
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
+    margin-top: 50px;
 }
 form *{
     font-family: 'Poppins',sans-serif;
@@ -140,30 +141,54 @@ button{
 .social i{
   margin-right: 4px;
 }
+.alert {
+    color: rgba(0,255,255,0.47);
+}
 
     </style>
 </head>
 <body>
+
+
 <div class="background">
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
+
+{% for message in messages%}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message</strong><br> {{message}}
+    <!--    <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+    <!--    <span aria-hidden="true">&times;</span>-->
+    <!--    </button>-->
+</div>
+{%endfor %}
 <form method=post>
     {% csrf_token %}
     <h3>{{Header}}</h3>
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Enter your username" id="username">
-    {% if showEmailField %}
+    <input type="text" name="username" placeholder="Enter your username" id="username" required>
+    {% if signup %}
     <label for="Email">Email ID</label>
-    <input type="text" name="email" placeholder="Enter you email id" id="email">
+    <input type="text" name="email" placeholder="Enter you email id" id="email" required>
+
+    <label for="Fname">First Name</label>
+    <input type="text" name="Fname" placeholder="Enter you First name" id="Fname" required>
+
+    <label for="Lname">Last Name</label>
+    <input type="text" name="Lname" placeholder="Enter you Last name" id="Lname" required>
+
+    <label for="ConfirmPassword">Password</label>
+    <input type="text" name="ConfirmPassword" placeholder="Confirm Password" id="ConfirmPassword" required>
+
     {% endif %}
     <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password" id="password">
+    <input type="password" name="password" placeholder="Password" id="password" required>
     <input type="submit" name='Signin'>
-    <div class="social">
-        <div class="go"><i class="fab fa-google"></i> Google</div>
-        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
-    </div>
+    <!--    <div class="social">-->
+    <!--        <div class="go"><i class="fab fa-google"></i> Google</div>-->
+    <!--        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>-->
+    <!--    </div>-->
 </form>
 </body>
 </html>

@@ -34,15 +34,28 @@ def signin(request):
     if request.method == "POST":
         username = request.POST.get('username', False)
         email = request.POST.get('email', False)
+        Fname = request.POST.get('Fname', False)
+        Lname = request.POST.get('Lname', False)
+        ConfirmPassword = request.POST.get('ConfirmPassword', False)
         password = request.POST.get('password', False)
         print(username, email, password)
-        myuser = User.objects.create_user(username, email, password)
-        return render(request, "Login.html")
+
+        if not username.isalnum():
+            messages.info(request, "Username should be alphanumeric only ", fail_silently=True)
+        elif not Fname.isalpha():
+            messages.info(request, "Firstname should not contain numeric digits", fail_silently=True)
+        elif not Lname.isalpha():
+            messages.info(request, "Lastname should not contain numeric digits", fail_silently=True)
+        elif password != ConfirmPassword:
+            messages.info(request, "Password doesn't match")
+        else:
+            myuser = User.objects.create_user(username, email, password)
+            return render(request, "Login.html")
 
     Title = "W̵̵̵elcome,Please signin"
     Header = 'Sign In'
     ButtonName = 'Signin'
-    showEmailField = True
+    signup = True
     return render(request, 'AuthTemplate.html', locals())
 
 
