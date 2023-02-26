@@ -31,7 +31,7 @@ def signin(request):
         Lname = request.POST.get('Lname', False)
         ConfirmPassword = request.POST.get('ConfirmPassword', False)
         password = request.POST.get('password', False)
-        print(username, email, password)
+        # print(username, email, password)
 
         if not username.isalnum():
             messages.info(request, "Username should be alphanumeric only ", fail_silently=True)

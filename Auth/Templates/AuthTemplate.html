@@ -145,6 +145,8 @@ button{
     color: rgba(0,255,255,0.47);
 }
 
+
+
     </style>
 </head>
 <body>
@@ -163,7 +165,7 @@ button{
     <!--    </button>-->
 </div>
 {%endfor %}
-<form method=post>
+<form method=post class="form-inline">
     {% csrf_token %}
     <h3>{{Header}}</h3>
     <label for="username">Username</label>

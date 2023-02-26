@@ -23,4 +23,5 @@ urlpatterns = [
     # path('test', Auth.views.auth.as_view(), name='AuthTemplate.html')
 
     # Auth Urls END
+
 ]

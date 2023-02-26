@@ -18,7 +18,10 @@ from django.urls import path
 from django.views.generic import TemplateView
 import Auth.views
 from django.urls import include
+
+import User
 from Auth import urls
+from User import urls
 
 urlpatterns = {
     path('admin/', admin.site.urls),
@@ -29,5 +32,7 @@ urlpatterns = {
     #      extra_context={'title': 'Welcome to gaurav'}))
     # path('test', Auth.views.auth.as_view()),
     # Auth Urls END
-    path("accounts/", include("django.contrib.auth.urls"))
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('users/', include(User.urls), name='User'),
+    # path('<int:year>/<str:month>', User.views.calender, name='User'),
 }
