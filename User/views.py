@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
@@ -5,7 +7,7 @@ from calendar import HTMLCalendar
 
 # Create your views here.
 
-def calender(request, year, month):
+def calender(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
     year = year
     month = month.title()
     month_number = list(calendar.month_name).index(month)
