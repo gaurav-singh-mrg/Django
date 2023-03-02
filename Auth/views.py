@@ -13,14 +13,14 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return render(request, "index.html")
+            return render(request, "Auth/index.html")
         return redirect('')
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
     ButtonName = 'Login'
     showEmailField = False
-    return render(request, 'AuthTemplate.html', locals())
+    return render(request, 'Auth/AuthTemplate.html', locals())
 
 
 def signin(request):
@@ -43,19 +43,19 @@ def signin(request):
             messages.info(request, "Password doesn't match")
         else:
             myuser = User.objects.create_user(username, email, password)
-            return render(request, "Login.html")
+            return render(request, "Auth/Login.html")
 
     Title = "Welcome,Please signin"
     Header = 'Sign In'
     ButtonName = 'Signin'
     signup = True
-    return render(request, 'AuthTemplate.html', locals())
+    return render(request, 'Auth/AuthTemplate.html', locals())
 
 
 def index(request):
     messages.info(request, 'Welcome Please login', fail_silently=True)
     Title = "Welcome, Homepage"
-    return render(request, 'index.html', locals())
+    return render(request, 'Auth/index.html', locals())
 
 # class index(TemplateView):
 #     template_name = "index.html"

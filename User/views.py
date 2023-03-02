@@ -14,4 +14,4 @@ def calender(request, year=datetime.now().year, month=datetime.now().strftime('%
 
     month_number = int(month_number)
     Cal = HTMLCalendar().formatmonth(year, month_number)
-    return render(request, 'UserIndex.html', locals())
+    return render(request, 'User/UserIndex.html', locals())

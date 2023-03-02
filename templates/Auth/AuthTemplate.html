@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{Title}}</title>
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>page</title>
+
+
+</head>
+<body>
+{% include 'navbar.html'%}
+
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
+{% for message in messages%}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message</strong><br> {{message}}
+    <!--    <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+    <!--    <span aria-hidden="true">&times;</span>-->
+    <!--    </button>-->
+</div>
+{%endfor %}
+<form method=post class=".text-center">
+    {% csrf_token %}
+    <h3>{{Header}}</h3>
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="Enter your username" id="username" required>
+    {% if signup %}
+    <label for="Email">Email ID</label>
+    <input type="text" name="email" placeholder="Enter you email id" id="email" required>
+    <br/>
+    <label for="Fname">First Name</label>
+    <input type="text" name="Fname" placeholder="Enter you First name" id="Fname" required>
+
+    <label for="Lname">Last Name</label>
+    <input type="text" name="Lname" placeholder="Enter you Last name" id="Lname" required>
+    <br/>
+    <label for="ConfirmPassword">Password</label>
+    <input type="text" name="ConfirmPassword" placeholder="Confirm Password" id="ConfirmPassword" required>
+
+    {% endif %}
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password" id="password" required>
+    <input type="submit" name='Signin'>
+</form>
+</body>
+</html>
+<!-- partial -->
+
+</body>
+</html>
