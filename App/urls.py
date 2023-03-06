@@ -23,8 +23,8 @@ import User
 from Auth import urls
 from User import urls
 
-urlpatterns = {
-    path('admin/', admin.site.urls),
+urlpatterns = [
+    path('admin', admin.site.urls, name='admin'),
     path('', Auth.views.index),
     # Auth Urls Start
     path('auth/', include(Auth.urls)),
@@ -33,6 +33,5 @@ urlpatterns = {
     # path('test', Auth.views.auth.as_view()),
     # Auth Urls END
     path('accounts/', include("django.contrib.auth.urls")),
-    path('users/', include(User.urls), name='User'),
-    # path('<int:year>/<str:month>', User.views.calender, name='User'),
-}
+    path('users/', include(User.urls), name='User')
+]
