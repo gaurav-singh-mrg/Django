@@ -24,7 +24,7 @@ from Auth import urls
 from User import urls
 
 urlpatterns = [
-    path('admin', admin.site.urls, name='admin'),
+    path('admin/', admin.site.urls),
     path('', Auth.views.index),
     # Auth Urls Start
     path('auth/', include(Auth.urls)),

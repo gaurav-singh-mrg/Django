@@ -10,7 +10,7 @@ urlpatterns = [
     path('', Auth.views.index, name='index'),
     path('signin/', Auth.views.signin, name='signin'),
     path('login/', Auth.views.Login, name='login'),
-    path('home/', Auth.views.index, name='home')
+    path('home/', Auth.views.index, name='home'),
     # path('login/', Auth.views.auth.as_view()),
     # path('signin/', TemplateView.as_view(template_name="AuthTemplate.html",
     #                                      extra_context={'Title': 'Welcome, Please SignIn',
@@ -19,9 +19,6 @@ urlpatterns = [
     #                                                     'method': 'post',
     #                                                     'ButtonAction': 'SigninAction'
     #                                                     })),
-    # path('login/loginAction', Auth.views.LoginAction),
-    # path('signin/SigninAction', Auth.views.SigninAction),
-    # path('test', Auth.views.auth.as_view(), name='AuthTemplate.html')
 
     # Auth Urls END
 
