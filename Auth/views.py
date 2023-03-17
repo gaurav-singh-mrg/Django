@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as ln
+from django.contrib.auth import authenticate, login as ln, logout
 
 
 # Create your views here.
@@ -21,6 +21,11 @@ def Login(request):
     ButtonName = 'Login'
     showEmailField = False
     return render(request, 'Auth/AuthTemplate.html', locals())
+
+
+def Logout(request):
+    logout(request)
+    return Login(request)
 
 
 def signin(request):

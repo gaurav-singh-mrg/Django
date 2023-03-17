@@ -11,6 +11,7 @@ urlpatterns = [
     path('signin/', Auth.views.signin, name='signin'),
     path('login/', Auth.views.Login, name='login'),
     path('home/', Auth.views.index, name='home'),
+    path('logout/', Auth.views.Logout, name='logout')
     # path('login/', Auth.views.auth.as_view()),
     # path('signin/', TemplateView.as_view(template_name="AuthTemplate.html",
     #                                      extra_context={'Title': 'Welcome, Please SignIn',

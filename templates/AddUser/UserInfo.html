@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{{Title}}</title>
+</head>
+<body>
+<div>
+    {% include 'navbar.html' %}
+
+    {% block content %}
+    <br>
+    <div>
+        {% for CardHeader in list %}
+        <!--        {% with CardTitle=CardHeader.email CardDescription=CardHeader.first_name %}-->
+        <!--        {% include 'cards.html'%}-->
+        <!--        {% endwith %}-->
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success">UserID : {{CardHeader}}</div>
+            <div class="card-body text-success">
+                <ul>
+                    <li><h5 class="card-title">Name : {{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5></li>
+                    <li><p class="card-text">Email : {{CardHeader.email}}</p></li>
+                    <ul>
+            </div>
+            <div class="card-footer bg-transparent border-success">
+                <button type="button" class="btn btn-outline-info">Follow</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock%}
+</div>
+
+</body>
+</html>

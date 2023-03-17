@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
+
+import AddUser
 import Auth.views
 from django.urls import include
 
 import User
 from Auth import urls
 from User import urls
+from AddUser import urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', Auth.views.index),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', Auth.views.index, name='Home'),
     # Auth Urls Start
     path('auth/', include(Auth.urls)),
     # path('test', TemplateView.as_view(template_name="AuthTemplate.html",
@@ -33,5 +36,7 @@ urlpatterns = [
     # path('test', Auth.views.auth.as_view()),
     # Auth Urls END
     path('accounts/', include("django.contrib.auth.urls")),
-    path('users/', include(User.urls), name='User')
+    path('users/', include(User.urls), name='User'),
+    # Add User urls
+    path('adduser/', include(AddUser.urls), name='AddUser')
 ]
