@@ -21,6 +21,7 @@ import AddUser
 import Auth.views
 from django.urls import include
 
+import Home
 import User
 from Auth import urls
 from User import urls
@@ -38,5 +39,6 @@ urlpatterns = [
     path('accounts/', include("django.contrib.auth.urls")),
     path('users/', include(User.urls), name='User'),
     # Add User urls
-    path('adduser/', include(AddUser.urls), name='AddUser')
+    path('adduser/', include(AddUser.urls), name='AddUser'),
+    # path('home/', include(Home.urls), name='profile')
 ]

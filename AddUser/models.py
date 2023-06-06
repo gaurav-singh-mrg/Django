@@ -13,29 +13,35 @@ class users_info(models.Model):
     Country = models.CharField(max_length=255, null=True)
     Phone = models.CharField('Contact Phone', null=True, max_length=20)
     # Email = models.EmailField('Email')
-    Follower = models.IntegerField(default=0)
-    Following = models.IntegerField(default=0)
+    FollowerCount = models.IntegerField(default=0)
+    FollowingCount = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.User.FirstName
+    # def __str__(self):
+    #     return self.userid
+
+
+''' We can find total number of followers by counting 
+select count followerid from followdata where userid = 1
+and we can find total number of following by count 
+seelct count userid from followdata where followerid = 1 '''
 
 
 class FollowData(models.Model):
-    # FollowerId = models.IntegerField(default=0, null=False)
-    FollowerId = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
-    Active = models.BooleanField(default=True, null=False)
+    FollowId = models.IntegerField(default=1, blank=True)
+    FollowerId = models.IntegerField(blank=True, default=1)
+    # Active = models.BooleanField(default=True, null=False)
     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
 
     # def __str__(self):
-    #     return self.FollowerId
+    #     return self.id
 
-
-class FollowingData(models.Model):
-    FollowingID = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
-    Active = models.BooleanField(default=True, null=False)
-    CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
-    UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
-
-    # def __str__(self):
-    #     return self.FollowingID
+# class FollowingData(models.Model):
+#     UserId = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+#     FollowingID = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+#     Active = models.BooleanField(default=True, null=False)
+#     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
+#     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
+#
+#     # def __str__(self):
+#     #     return self.FollowingID

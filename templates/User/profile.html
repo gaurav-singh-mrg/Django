@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+
+{%include 'navbar.html'%}
+{% load static %}
+<br>
+
+<div class="container text-center ">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="card mb-1" style="max-width: 440px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'App/user.png' %}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <div class="container">
+                            {% for user in userinfo%}
+                            <div class="row">Username : {{user.username}}</div>
+                            <div class="row">Name : {{user.first_name }} {{user.last_name}}</div>
+                            <div class="row">Follower : {{Follower}}</div>
+                            <div class="row">Following : {{Following}}</div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Photos row start -->
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-primary">Media</button>
+        <button type="button" class="btn btn-outline-primary">Tagged</button>
+        <button type="button" class="btn btn-outline-primary">Todo</button>
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!--    {loop start}-->
+    <div class="col">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+            </div>
+        </div>
+    </div>
+    <!--    {loop end}-->
+
+</div>
+
+
+</body>
+</html>

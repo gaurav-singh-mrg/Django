@@ -9,28 +9,32 @@
     {% include 'navbar.html' %}
 
     {% block content %}
+    {% load static %}
     <br>
     <div>
-        {% for CardHeader in list %}
-        <!--        {% with CardTitle=CardHeader.email CardDescription=CardHeader.first_name %}-->
-        <!--        {% include 'cards.html'%}-->
-        <!--        {% endwith %}-->
-        <div class="card border-success mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-success">UserID : {{CardHeader}}</div>
-            <div class="card-body text-success">
-                <ul>
-                    <li><h5 class="card-title">Name : {{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5></li>
-                    <li><p class="card-text">Email : {{CardHeader.email}}</p></li>
-                    <ul>
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            {% for CardHeader in list %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{% static 'App/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage"
+                         width="64" height="64">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5>
+                        <button type="button" class="btn btn-outline-info">
+                            <a href="/adduser/follow/{{CardHeader.id}}">Follow</a>
+                        </button>
+
+                        <!--                <p class="card-text"> card paragraph </p>-->
+                    </div>
+                </div>
             </div>
-            <div class="card-footer bg-transparent border-success">
-                <button type="button" class="btn btn-outline-info">Follow</button>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
     </div>
     {% endblock%}
 </div>
+
 
 </body>
 </html>

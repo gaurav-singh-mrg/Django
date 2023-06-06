@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as ln, logout
+from AddUser.models import users_info
 
 
 # Create your views here.
@@ -13,7 +14,7 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return render(request, "Auth/index.html")
+            return render(request, "Home/home.html")
         return redirect('')
     signup = False
     Title = "Welcome,Please Login"
@@ -21,6 +22,7 @@ def Login(request):
     ButtonName = 'Login'
     showEmailField = False
     return render(request, 'Auth/AuthTemplate.html', locals())
+    # return render(request, 'Home/home.html', locals())
 
 
 def Logout(request):
@@ -48,6 +50,9 @@ def signin(request):
             messages.info(request, "Password doesn't match")
         else:
             myuser = User.objects.create_user(username, email, password)
+            userid = User.objects.get(username=username)
+            users_info(userid=userid).save()
+            print(f"users_info {userid.id}")
             return render(request, "Auth/Login.html")
 
     Title = "Welcome,Please signin"
