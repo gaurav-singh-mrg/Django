@@ -67,34 +67,3 @@ def index(request):
     Title = "Welcome, Homepage"
     return render(request, 'Auth/index.html', locals())
 
-# class index(TemplateView):
-#     template_name = "index.html"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['Title'] = "Welcome,Homepage"
-#         context['Header'] = 'Login Here'
-#         context['ButtonName'] = 'Login'
-#         return context
-
-# class auth(TemplateView):
-#     template_name = "AuthTemplate.html"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['Title'] = "Welcome,Please Login"
-#         context['Header'] = 'Login Here'
-#         context['ButtonName'] = 'Login'
-#         return context
-#
-#     def post(self, request):
-#         if self.request.method == "POST":
-#             # print(request.__dict__, file=sys.stderr)
-#             username = self.request.POST.get('username', False)
-#             email = self.request.POST.get('email', False)
-#             password = self.request.POST.get('password', False)
-#             print(username, email, password)
-#             myuser = User.objects.create_user(username, email, password)
-#             # myuser.first_user =
-#             # messages.success(request, 'Account created successfully')
-#             return redirect(request, 'Login')

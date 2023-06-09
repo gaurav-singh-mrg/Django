@@ -1,0 +1,9 @@
+
+.msg{
+    background-color:aquamarine;
+    border: solid black 1px;
+    display: block;
+}
+.hidemsg{
+    display: none;
+}
