@@ -15,13 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
-
 import AddUser
 import Auth.views
+import Home
 from django.urls import include
 
-import Home
+from Home import urls
 import User
 from Auth import urls
 from User import urls
@@ -29,16 +28,14 @@ from AddUser import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', Auth.views.index, name='Home'),
-    # Auth Urls Start
-    path('auth/', include(Auth.urls)),
-    # path('test', TemplateView.as_view(template_name="AuthTemplate.html",
-    #      extra_context={'title': 'Welcome to gaurav'}))
-    # path('test', Auth.views.auth.as_view()),
-    # Auth Urls END
-    path('accounts/', include("django.contrib.auth.urls")),
+    path('', Auth.views.index, name='index'),
+    path('auth/', include(Auth.urls), name='auth'),
+    # path('login/', Auth.views.Login, name='login'),
+    # path('signin/', Auth.views.signin, name='login'),
+
+    path('accounts/', include("django.contrib.auth.urls"), name='accounts'),
     path('users/', include(User.urls), name='User'),
-    # Add User urls
     path('adduser/', include(AddUser.urls), name='AddUser'),
-    # path('home/', include(Home.urls), name='profile')
+
+    path('home/', include(Home.urls), name='profile')
 ]
