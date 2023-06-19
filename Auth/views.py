@@ -40,14 +40,17 @@ def signin(request):
         Lname = request.POST.get('LastName', False)
         ConfirmPassword = request.POST.get('ConfirmPassword', False)
         password = request.POST.get('Password', False)
+
         SigninForm = forms.SignUpForm(request.POST)
-        OldUser = {User.objects.filter(username=username).exists()}
-        if SigninForm.is_valid() and not OldUser:
+        oldUser = not {User.objects.filter(username=username).exists()}
+        print(f'Olduser => {oldUser}')
+        print(f'SigninForm => {SigninForm.is_valid()}')
+        if SigninForm.is_valid() and not oldUser:
             myuser = User.objects.create_user(username, email, password)
             userid = User.objects.get(username=username)
             users_info(userid=userid).save()
             print(f"users_info {userid.id}")
-            return render(request, "Auth/Login.html")
+            return render(request, 'Auth/Login.html', locals())
         else:
             print("Invalid Form")
     Title = "Welcome,Please signin"

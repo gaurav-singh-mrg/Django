@@ -27,10 +27,10 @@ from User import urls
 from AddUser import urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
+    path(r'admin/', admin.site.urls, name='admin'),
     path('', Auth.views.index, name='index'),
     path('auth/', include(Auth.urls), name='auth'),
-    # path('login/', Auth.views.Login, name='login'),
+    path('login/', Auth.views.Login, name='login'),
     # path('signin/', Auth.views.signin, name='login'),
 
     path('accounts/', include("django.contrib.auth.urls"), name='accounts'),
