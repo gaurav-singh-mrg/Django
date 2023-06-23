@@ -1,3 +1,4 @@
+from django.conf.global_settings import LOGIN_REDIRECT_URL
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -16,7 +17,6 @@ def Login(request):
         if user is not None:
             ln(request, user)
             return render(request, "Home/home.html")
-        return redirect('')
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
@@ -29,7 +29,10 @@ def Login(request):
 
 def Logout(request):
     logout(request)
-    return index(request)
+    messages.info(request, 'Welcome Please login', fail_silently=True)
+    Title = "Welcome, Homepage"
+    redirect(LOGIN_REDIRECT_URL)
+    # return render(request, 'Auth/index.html', locals())
 
 
 def signin(request):

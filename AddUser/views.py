@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
 
 
 # Create your views here.
-
+@login_required(login_url='/auth/login')
 def getinfo(request):
     list = User.objects.exclude(id=request.user.id).select_related()
     print(list.query)
@@ -15,6 +16,7 @@ def getinfo(request):
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
+@login_required(login_url='/auth/login')
 def followbtn(request, id):
     # check for valid request id
     if request.user.id == id:

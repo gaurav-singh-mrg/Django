@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
@@ -8,7 +9,7 @@ from AddUser.models import FollowData
 
 
 # Create your views here.
-
+@login_required(login_url='/auth/login')
 def calender(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
     year = year
     month = month.title()
@@ -19,6 +20,7 @@ def calender(request, year=datetime.now().year, month=datetime.now().strftime('%
     return render(request, 'User/UserIndex.html', locals())
 
 
+@login_required(login_url='/auth/login')
 def profile(request):
     print(request.user)
     user = User.objects.filter(id=request.user.id).values()

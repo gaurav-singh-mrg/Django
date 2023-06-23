@@ -9,6 +9,7 @@
 <body>
 
 {%include 'navbar.html'%}
+{% load static%}
 
 <div class="card border-success mb-3" style="max-width: 18rem;">
     <div class="card-header bg-transparent border-success">Username</div>
@@ -22,18 +23,18 @@
             <div class="row">
                 <div class="col align-self-start">
                     Likes
-                    <img src="{% static 'image/likes.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage"
-                         width="64" height="64">
+                    <img src="{% static 'image/like.svg' %}" class="card-img-top "
+                         alt="Like" height="50px" width="80px">
                 </div>
                 <div class="col">
                     Comment
-                    <img src="{% static 'image/comment.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage"
-                         width="64" height="64">
+                    <img src="{% static 'image/comment.svg' %}" class="card-img-top "
+                         alt="Comment" height="50px" width="80px">
                 </div>
                 <div class="col align-self-end">
                     Share
-                    <img src="{% static 'image/share.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage"
-                         width="64" height="64">
+                    <img src="{% static 'image/share.svg' %}" class="card-img-top "
+                         alt="Share" height="50px" width="80px">
                 </div>
             </div>
         </div>
