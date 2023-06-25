@@ -2,17 +2,33 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
+from django.db import connection
+from collections import namedtuple
+from django.db.models import Case, When, Value, Q, Count
 
 
 # Create your views here.
 @login_required(login_url='/auth/login')
 def getinfo(request):
-    list = User.objects.exclude(id=request.user.id).select_related()
-    print(list.query)
-    print(f"list: {list}")
-    for a in list:
-        print(f"user {a.first_name}")
-    # isFollow = FollowData.objects.filter(FollowId=request.user.id).all()
+    with connection.cursor() as c:
+        c.execute('SELECT a.id ,a.username,a.first_name,a.last_name, b.* FROM public."auth_user" as a left join '
+                  'public."AddUser_followdata" b  on a.id = b.id')
+        row = namedtuplefetchall(c)
+        # print(f'row => {row}')
+        for a in row:
+            print(a)
+        list = row
+    # list = User.objects.exclude(id=request.user.id).values('id','username',
+    #                                                        'first_name',
+    #                                                        'last_name')
+    # print(list.query.__str__())
+    # for a in list:
+    #     # User.objects.annotate(FollowData=Case(
+    #     #     When(FollowData.objects.filter(FollowerId=a.id).count() > 0), Then=Value(True),
+    #     #     default=False,
+    #     # ))
+    #     print(a)
+    print(f"user {list}")
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
@@ -29,5 +45,5 @@ def followbtn(request, id):
             print("Duplicate data , do not insert")
         else:
             FollowData(FollowId=request.user.id, FollowerId=id).save()
-            followcount = users_info.objects.filter(userid=request.user.id)
+            # followcount = users_info.objects.filter(userid=request.user.id)
     return getinfo(request)

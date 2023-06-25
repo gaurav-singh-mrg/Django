@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as ln, logout
+
+import Auth
 from AddUser.models import users_info
-from Auth import forms
+from . import forms
 
 
 # Create your views here.
@@ -16,7 +18,7 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return render(request, "Home/home.html")
+            return redirect('/home')
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
@@ -29,10 +31,7 @@ def Login(request):
 
 def Logout(request):
     logout(request)
-    messages.info(request, 'Welcome Please login', fail_silently=True)
-    Title = "Welcome, Homepage"
     redirect(LOGIN_REDIRECT_URL)
-    # return render(request, 'Auth/index.html', locals())
 
 
 def signin(request):
@@ -65,6 +64,9 @@ def signin(request):
 
 
 def index(request):
-    messages.info(request, 'Welcome Please login', fail_silently=True)
-    Title = "Welcome, Homepage"
-    return render(request, 'Auth/index.html', locals())
+    if request.user.is_authenticated:
+        return redirect('/home')
+    else:
+        messages.info(request, 'Welcome Please login', fail_silently=True)
+        Title = "Welcome, Homepage"
+        return render(request, 'Auth/index.html', locals())

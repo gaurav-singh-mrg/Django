@@ -21,12 +21,16 @@ def calender(request, year=datetime.now().year, month=datetime.now().strftime('%
 
 
 @login_required(login_url='/auth/login')
-def profile(request):
-    print(request.user)
+def profile(request, btnSelect='media'):
+    if btnSelect == 'todo':
+        print("Todo selected")
+    if btnSelect == 'media':
+        print("media")
+    if btnSelect == 'tagged':
+        print("tagged")
     user = User.objects.filter(id=request.user.id).values()
     Follower = FollowData.objects.filter(FollowId=request.user.id).count()
     Following = FollowData.objects.filter(FollowerId=request.user.id).count()
-    # username = user.username()
     print(f'Follower :{Follower} , Following :{Following}')
     print(user)
     context = {

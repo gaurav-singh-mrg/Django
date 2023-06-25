@@ -34,15 +34,21 @@
     </div>
     <!--Photos row start -->
     <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" class="btn btn-outline-primary">Media</button>
-        <button type="button" class="btn btn-outline-primary">Tagged</button>
-        <button type="button" class="btn btn-outline-primary">Todo</button>
+        <button type="submit" class="btn btn-outline-primary">
+            <a href="media">Media</a>
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            <a href="tagged">Tagged</a>
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            <a href="todo">Todo</a>
+        </button>
     </div>
 </div>
-
+<br>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <!--    {loop start}-->
+    {% if media %}
     <div class="col">
         <div class="card h-100">
             <img src="..." class="card-img-top" alt="...">
@@ -53,10 +59,13 @@
             </div>
         </div>
     </div>
-    <!--    {loop end}-->
+    {%else %}
+    <p> Empty tag . please implement gaurav kumar </p>
+    {% endif %}
+
 
 </div>
-
+<script src="{% static 'jscode/profile.js' %}"></script>
 
 </body>
 </html>

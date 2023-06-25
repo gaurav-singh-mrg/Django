@@ -16,15 +16,18 @@
             {% for CardHeader in list %}
             <div class="col">
                 <div class="card h-100">
-                    <img src="{% static 'App/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage"
-                         width="64" height="64">
+                    <img src="{% static 'image/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage">
                     <div class="card-body">
                         <h5 class="card-title">{{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5>
                         <button type="button" class="btn btn-outline-info">
-                            <a href="/adduser/follow/{{CardHeader.id}}">Follow</a>
+                            <a href="/adduser/follow/{{CardHeader.id}}">
+                                {% if isFollow%}
+                                Following
+                                {% else %}
+                                Follow
+                                {% endif %}
+                            </a>
                         </button>
-
-                        <!--                <p class="card-text"> card paragraph </p>-->
                     </div>
                 </div>
             </div>
