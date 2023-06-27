@@ -29,6 +29,8 @@ seelct count userid from followdata where followerid = 1 '''
 class FollowData(models.Model):
     FollowId = models.IntegerField(default=1, blank=True)
     FollowerId = models.IntegerField(blank=True, default=1)
+    FollowsID = models.ManyToManyField(User, related_name='Follows')
+    FollowersId = models.ManyToManyField(User, related_name='Followers')
     # Active = models.BooleanField(default=True, null=False)
     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every

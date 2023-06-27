@@ -10,25 +10,18 @@ from django.db.models import Case, When, Value, Q, Count
 # Create your views here.
 @login_required(login_url='/auth/login')
 def getinfo(request):
-    with connection.cursor() as c:
-        c.execute('SELECT a.id ,a.username,a.first_name,a.last_name, b.* FROM public."auth_user" as a left join '
-                  'public."AddUser_followdata" b  on a.id = b.id')
-        row = namedtuplefetchall(c)
-        # print(f'row => {row}')
-        for a in row:
-            print(a)
-        list = row
-    # list = User.objects.exclude(id=request.user.id).values('id','username',
-    #                                                        'first_name',
-    #                                                        'last_name')
+    # with connection.cursor() as c:
+    #     c.execute('SELECT a.id ,a.username,a.first_name,a.last_name, b.* FROM public."auth_user" as a left join '
+    #               'public."AddUser_followdata" b  on a.id = b.id')
+    #     row = namedtuplefetchall(c)
+    #     # print(f'row => {row}')
+    #     for a in row:
+    #         print(a)
+    #     list = row
+    list = User.objects.exclude(id=request.user.id).values('id', 'username',
+                                                           'first_name',
+                                                           'last_name')
     # print(list.query.__str__())
-    # for a in list:
-    #     # User.objects.annotate(FollowData=Case(
-    #     #     When(FollowData.objects.filter(FollowerId=a.id).count() > 0), Then=Value(True),
-    #     #     default=False,
-    #     # ))
-    #     print(a)
-    print(f"user {list}")
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
@@ -44,6 +37,11 @@ def followbtn(request, id):
         if isDuplicate > 0:
             print("Duplicate data , do not insert")
         else:
+            print(f"Saving follow data {request.user.id} , {id}")
             FollowData(FollowId=request.user.id, FollowerId=id).save()
-            # followcount = users_info.objects.filter(userid=request.user.id)
+            a = User.objects.filter(id=id)
+            b = FollowData.FollowersId.set(a)
+            print(b)
+            # FollowData.FollowsID.set(User.id)
+
     return getinfo(request)
