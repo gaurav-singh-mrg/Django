@@ -10,18 +10,14 @@ from django.db.models import Case, When, Value, Q, Count
 # Create your views here.
 @login_required(login_url='/auth/login')
 def getinfo(request):
-    # with connection.cursor() as c:
-    #     c.execute('SELECT a.id ,a.username,a.first_name,a.last_name, b.* FROM public."auth_user" as a left join '
-    #               'public."AddUser_followdata" b  on a.id = b.id')
-    #     row = namedtuplefetchall(c)
-    #     # print(f'row => {row}')
-    #     for a in row:
-    #         print(a)
-    #     list = row
-    list = User.objects.exclude(id=request.user.id).values('id', 'username',
-                                                           'first_name',
-                                                           'last_name')
-    # print(list.query.__str__())
+    # list = User.objects.exclude(id=request.user.id).values('id', 'username',
+    #                                                        'first_name',
+    #                                                        'last_name').select_related()
+    list = User.objects.exclude(Followers=request.user.id).select_related().all()
+    # a = FollowData.objects.exclude(User__id=request.user.id).select_related().all()
+    c = users_info.objects.exclude(userid=2).select_related()
+    print(list.query.__str__())
+    print(c.query.__str__())
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
@@ -34,14 +30,14 @@ def followbtn(request, id):
     if isUserIDExist == 1:
         '''going to update follower count'''
         isDuplicate = FollowData.objects.filter(FollowId=request.user.id, FollowerId=id).count()
+        # isDuplicate = 0
         if isDuplicate > 0:
             print("Duplicate data , do not insert")
         else:
             print(f"Saving follow data {request.user.id} , {id}")
-            FollowData(FollowId=request.user.id, FollowerId=id).save()
-            a = User.objects.filter(id=id)
-            b = FollowData.FollowersId.set(a)
-            print(b)
-            # FollowData.FollowsID.set(User.id)
-
+            c = FollowData(FollowId=request.user.id, FollowerId=id)
+            c.save()
+            a = User.objects.get(id=id)
+            print(a)
+            a.Followers.add(c)
     return getinfo(request)
