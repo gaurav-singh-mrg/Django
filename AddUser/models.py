@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class users_info(models.Model):
     # CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
-    userid = models.ForeignKey(User, on_delete=models.CASCADE)
+    Userid = models.ForeignKey(User, on_delete=models.CASCADE)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
     Country = models.CharField(max_length=255, null=True)
     Phone = models.CharField('Contact Phone', null=True, max_length=20)
@@ -17,16 +17,9 @@ class users_info(models.Model):
     #     return self.userid
 
 
-''' We can find total number of followers by counting 
-select count followerid from followdata where userid = 1
-and we can find total number of following by count 
-seelct count userid from followdata where followerid = 1 '''
-
-
 class FollowData(models.Model):
-    # FollowsId = models.ForeignKey(User, on_delete=models.CASCADE)
-    # users_info = models.ForeignKey(Us)
-    FollowersId = models.ManyToManyField(User, related_name='Followers')
+    UserId = models.IntegerField(default=0)
+    FollowersId = models.IntegerField(default=0)
     Active = models.BooleanField(default=True, null=False)
     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every

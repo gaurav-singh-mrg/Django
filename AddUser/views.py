@@ -10,17 +10,20 @@ from django.db.models import Case, When, Value, Q, Count
 # Create your views here.
 @login_required(login_url='/auth/login')
 def getinfo(request):
+    a = FollowData.objects.filter(UserId=request.user.id).values('FollowersId')
     list = User.objects.exclude(id=request.user.id).values('id', 'username',
                                                            'first_name',
                                                            'last_name')
-    # FollowData.objects.filter(user_id =request.user.id)
-    a = User.objects.exclude(Followers=request.user.id).select_related().all()
+    c = User.objects.annotate(IsFollower=Case(
+        When(id__in=[a], then=Value(True),
+        default=Value(False))
+    ),)
 
-    # b = FollowData.objects.exclude(User__id =request.user.id).select_related()
-    c = FollowData.objects.filter(FollowersId=request.user.id)
-    print(f'C => {c.query.__str__()}')
-    # print(f'B => {b.query.__str__()}')
-    # print(f'D => {a.query.__str__()}')
+    b = User.objects.exclude(id__in=[a]).values('id', 'username',
+                                                'first_name',
+                                                'last_name')
+
+    print(f'C => {list.query.__str__()}')
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
@@ -43,14 +46,15 @@ def followbtn(request, id):
         '''going to update follower count'''
         isDuplicate = FollowData.objects.filter(id=request.user.id, FollowersId=id).count()
         # isDuplicate = 0
+
         if isDuplicate > 0:
             print("Duplicate data , do not insert")
         else:
             print(f"Saving follow data {request.user.id} , {id}")
-            c = FollowData(Active=True)
+            c = FollowData(Active=True, UserId=request.user.id, FollowersId=id)
             c.save()
-            a = User.objects.get(id=id)
-            a.Followers.add(c)
+            # a = User.objects.get(id=id)
+            # a.Followers.add(c)
     else:
         print("User id not exist")
     return getinfo(request)
