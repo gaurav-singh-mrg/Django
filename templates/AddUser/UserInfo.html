@@ -7,7 +7,6 @@
 <body>
 <div>
     {% include 'navbar.html' %}
-
     {% block content %}
     {% load static %}
     <br>
@@ -18,7 +17,13 @@
                 <div class="card h-100">
                     <img src="{% static 'image/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage">
                     <div class="card-body">
-                        <h5 class="card-title">{{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5>
+                        <h5 class="card-title">
+                            {% if CardHeader.first_name == '' %}
+                            Name
+                            {%else%}
+                            {{ CardHeader.first_name}} {{ CardHeader.last_name}}
+                            {%endif%}
+                        </h5>
                         <button type="button" class="btn btn-outline-info">
                             <a href="/adduser/follow/{{CardHeader.id}}">
                                 {% if CardHeader.IsFollower%}
