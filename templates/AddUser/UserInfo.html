@@ -21,7 +21,7 @@
                         <h5 class="card-title">{{ CardHeader.first_name}} {{ CardHeader.last_name}} </h5>
                         <button type="button" class="btn btn-outline-info">
                             <a href="/adduser/follow/{{CardHeader.id}}">
-                                {% if isFollow%}
+                                {% if CardHeader.IsFollower%}
                                 Following
                                 {% else %}
                                 Follow
