@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
 from django.db.models import Case, When, Value
-
+from django.core.paginator import Paginator  # adding pagination support
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -16,6 +16,14 @@ def getinfo(request):
                                                                         'first_name',
                                                                         'last_name',
                                                                         'IsFollower')
+    p = Paginator(list, 10)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = p.page(1)
+    except EmptyPage:
+        page_obj = p.page(p.num_pages)
 
     # print(f'C => {list.query.__str__()}')
     return render(request, 'AddUser/UserInfo.html', locals())

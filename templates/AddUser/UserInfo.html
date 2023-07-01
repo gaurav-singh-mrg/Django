@@ -11,32 +11,55 @@
     {% load static %}
     <br>
     <div>
-        <div class="row row-cols-1 row-cols-md-6 g-4">
-            {% for CardHeader in list %}
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'image/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {% if CardHeader.first_name == '' %}
-                            Name
-                            {%else%}
-                            {{ CardHeader.first_name}} {{ CardHeader.last_name}}
-                            {%endif%}
-                        </h5>
-                        <button type="button" class="btn btn-outline-info">
-                            <a href="/adduser/follow/{{CardHeader.id}}">
-                                {% if CardHeader.IsFollower%}
-                                Following
-                                {% else %}
-                                Follow
-                                {% endif %}
-                            </a>
-                        </button>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {%if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                </li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                {%if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!--        <center>-->
+        <!--        {%if page_obj.has_previous %} {# whether the previous page exists #}-->
+        <!--            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}-->
+        <!--        {% endif %}-->
+        <!--        <span>{{page_obj.number}}</span> {# the current page number #}-->
+
+        <!--        {%if page_obj.has_next %} {# whether the next page exists #}-->
+        <!--            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}-->
+        <!--        {% endif %}-->
+        <!--        </center>-->
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-6 g-4">
+                {% for CardHeader in page_obj.object_list %}
+                {# note that the list of posts are in the page_obj.object_list not page_obj #}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{% static 'image/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {% if CardHeader.first_name == '' %}
+                                UserName
+                                {%else%}
+                                {{ CardHeader.first_name}} {{ CardHeader.last_name}}
+                                {%endif%}
+                            </h5>
+                            <button type="button" class="btn btn-outline-info">
+                                <a href="/adduser/follow/{{CardHeader.id}}">
+                                    {% if CardHeader.IsFollower%} Following {% else %} Follow {% endif %}
+                                </a>
+                            </button>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
 
     </div>

@@ -17,11 +17,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='followdata',
             name='UserId',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(default=1),
         ),
         migrations.AddField(
             model_name='followdata',
             name='FollowersId',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(default=1),
         ),
     ]
