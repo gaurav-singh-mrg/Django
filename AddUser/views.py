@@ -12,11 +12,11 @@ def getinfo(request):
     list = User.objects.annotate(
         IsFollower=Case(
             When(id__in=[a], then=Value(True)),
-            default=Value(False), )).exclude(id=request.user.id).values('id', 'username',
-                                                                        'first_name',
-                                                                        'last_name',
-                                                                        'IsFollower')
-    p = Paginator(list, 10)
+            default=Value(False), )).exclude(id=request.user.id).order_by('first_name').values('id', 'username',
+                                                                                               'first_name',
+                                                                                               'last_name',
+                                                                                               'IsFollower')
+    p = Paginator(list, 12)
     page_number = request.GET.get('page')
     try:
         page_obj = p.get_page(page_number)
@@ -24,7 +24,10 @@ def getinfo(request):
         page_obj = p.page(1)
     except EmptyPage:
         page_obj = p.page(p.num_pages)
-
+    totalPages = page_obj.paginator.num_pages  # shows the total number of pages
+    print(f'totalPages => {totalPages}')
+    pageIter = [a + 1 for a in range(totalPages)]
+    print(f'pageIter => {pageIter}')
     # print(f'C => {list.query.__str__()}')
     return render(request, 'AddUser/UserInfo.html', locals())
 
