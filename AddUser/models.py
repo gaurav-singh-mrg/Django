@@ -18,7 +18,7 @@ class users_info(models.Model):
 
 
 class FollowData(models.Model):
-    UserId = models.IntegerField(default=0)
+    UserId = models.IntegerField(default=0, db_index=True)  # added db index
     FollowersId = models.IntegerField(default=0)
     Active = models.BooleanField(default=True, null=False)
     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
