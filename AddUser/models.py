@@ -13,6 +13,9 @@ class users_info(models.Model):
     FollowerCount = models.IntegerField(default=0)
     FollowingCount = models.IntegerField(default=0)
 
+    # default ordering
+    class META:
+        ordering = ('-Userid')
     # def __str__(self):
     #     return self.userid
 
@@ -24,5 +27,7 @@ class FollowData(models.Model):
     CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
 
+    # class Meta:
+    #     verbose_name_plural = 'FollowDatas'
     # def __str__(self):
     #     return self.id
