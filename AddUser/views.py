@@ -28,6 +28,7 @@ def getinfo(request):
     print(f'totalPages => {totalPages}')
     pageIter = [a + 1 for a in range(totalPages)]
     print(f'pageIter => {pageIter}')
+    elidedPageRange = p.get_elided_page_range(number=page_number, on_each_side=2)
     # print(f'C => {list.query.__str__()}')
     return render(request, 'AddUser/UserInfo.html', locals())
 
