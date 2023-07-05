@@ -29,8 +29,8 @@ def profile(request, btnSelect='media'):
     if btnSelect == 'tagged':
         print("tagged")
     user = User.objects.filter(id=request.user.id).values()
-    Follower = FollowData.objects.filter(FollowId=request.user.id).count()
-    Following = FollowData.objects.filter(FollowerId=request.user.id).count()
+    Follower = FollowData.objects.filter(UserId=request.user.id).count()
+    Following = FollowData.objects.filter(FollowersId=request.user.id).count()
     print(f'Follower :{Follower} , Following :{Following}')
     print(user)
     context = {

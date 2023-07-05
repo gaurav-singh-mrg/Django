@@ -26,6 +26,7 @@ from Auth import urls
 from User import urls
 from AddUser import urls
 from Browse import urls as browseUrl
+
 urlpatterns = [
     path(r'admin/', admin.site.urls, name='admin'),
     path('', Auth.views.index, name='index'),
