@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
-from django.db.models import Case, When, Value
+from django.db.models import Case, When, Value, F
 from django.core.paginator import Paginator  # adding pagination support
 
 # Create your views here.
@@ -37,7 +37,8 @@ def followbtn(request, id):
     if request.user.id == id:
         print("Same user can't fallow itself")
     isUserIDExist = User.objects.filter(id=id).count()
-    isUserExist = User.objects.filter(id=request.user.id)
+    isUserExist = User.objects.filter(id=request.user.id ).values('id')
+    print(f'isUserExist => {isUserExist.query.__str__()}')
     if isUserIDExist == 1:
         '''going to update follower count'''
         try:
@@ -45,12 +46,15 @@ def followbtn(request, id):
             print(f'Active Inactive followers {data.Active}')
             data.Active = not data.Active
             data.save()
-            '''Update the Active to True or false. which shows wether user is following or unfollowed'''
+            '''Update the Active to True or false. which shows weather user is following or unfollowed'''
         except FollowData.DoesNotExist:
             print(f"Saving follow data {request.user.id} , {id}")
             c = FollowData(Active=True, UserId=request.user.id, FollowersId=id)
             c.save()
-            return getinfo(request)
+        '''Going to update entry in user_info table'''
+        # user, isCreated = users_info.objects.get_or_create(Userid=isUserExist[0:1])
+        # # a = user.update(FollowerCount=F('FollowerCount') + 1)
+        # print(f'a => {a.query.__str__()}')
     else:
         print("Wrong User ID Provided")
     return getinfo(request)
