@@ -26,6 +26,8 @@ from Auth import urls
 from User import urls
 from AddUser import urls
 from Browse import urls as browseUrl
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path(r'admin/', admin.site.urls, name='admin'),
@@ -36,3 +38,6 @@ urlpatterns = [
     path('home/', include(Home.urls), name='profile'),
     path('browse/', include(browseUrl), name='Browse')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
