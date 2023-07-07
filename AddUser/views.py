@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
 from django.db.models import Case, When, Value, F
-from django.core.paginator import Paginator  # adding pagination support
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage  # adding pagination support
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -18,7 +18,7 @@ def getinfo(request):
                                                                                                'IsFollower')
     p = Paginator(list, 12)
     page_number = request.GET.get('page')
-    if page_number == None:  # added to handel condition when page_number is none , FIrst time visiting the page
+    if page_number is None:  # added to handel condition when page_number is none , FIrst time visiting the page
         page_number = 1
     try:
         page_obj = p.get_page(page_number)
