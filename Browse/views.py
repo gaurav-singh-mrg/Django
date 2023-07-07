@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Case, When, Value
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from AddUser.models import FollowData
 
 
 # Create your views here.
@@ -15,6 +19,8 @@ def browse(request):
                                                                                                'IsFollower')
     p = Paginator(list, 12)
     page_number = request.GET.get('page')
+    if page_number == None:
+        page_number = 1
     try:
         page_obj = p.get_page(page_number)
     except PageNotAnInteger:

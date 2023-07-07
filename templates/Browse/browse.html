@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+
+{%include 'navbar.html'%}
+{% load static%}
+
+<div class="card border-success mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-transparent border-success">Username</div>
+    <div class="card-body text-success">
+        <h5 class="card-title">Title</h5>
+        <p class="card-text">description</p>
+    </div>
+    <!--  Footer division start-->
+    <div class="card-footer bg-transparent border-success">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col align-self-start">
+                    Likes
+                    <img src="{% static 'image/like.svg' %}" class="card-img-top "
+                         alt="Like" height="50px" width="80px">
+                </div>
+                <div class="col">
+                    Comment
+                    <img src="{% static 'image/comment.svg' %}" class="card-img-top "
+                         alt="Comment" height="50px" width="80px">
+                </div>
+                <div class="col align-self-end">
+                    Share
+                    <img src="{% static 'image/share.svg' %}" class="card-img-top "
+                         alt="Share" height="50px" width="80px">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="{ % static 'jscode/main.js'% }"></script>
+</body>
+</html>

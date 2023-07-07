@@ -31,7 +31,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path(r'admin/', admin.site.urls, name='admin'),
-    path('', Auth.views.index, name='index'),
+    path('', Auth.views.index, name='home'),
     path('auth/', include(Auth.urls), name='auth'),
     path('users/', include(User.urls), name='User'),
     path('adduser/', include(AddUser.urls), name='AddUser'),

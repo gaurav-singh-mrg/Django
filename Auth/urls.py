@@ -4,7 +4,6 @@ import Auth
 import Home.views
 from App import settings
 from Auth import views
-from Home import views
 
 urlpatterns = [
     # Auth Urls Start
