@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Case, When, Value
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -19,7 +19,7 @@ def browse(request):
                                                                                                'IsFollower')
     p = Paginator(list, 12)
     page_number = request.GET.get('page')
-    if page_number == None:
+    if page_number is None:
         page_number = 1
     try:
         page_obj = p.get_page(page_number)

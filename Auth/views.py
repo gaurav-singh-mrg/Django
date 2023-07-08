@@ -18,7 +18,7 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return redirect('/home')
+            return redirect('home')
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
@@ -65,7 +65,7 @@ def signin(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('/home')
+        return redirect('home')
     else:
         messages.info(request, 'Welcome Please login', fail_silently=True)
         Title = "Welcome, Homepage"
