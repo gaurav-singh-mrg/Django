@@ -38,6 +38,7 @@ def profile(request, btnSelect='media'):
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
         print("settings selected")
+        context['settings'] = True
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")
