@@ -6,9 +6,7 @@ function accordionShowHide(id , set){
 }
 function onClickMedia(elm , set){
     const a = document.getElementsByClassName(elm);
-//    set ="hidemsg"
-    a[0].removeAttribute("class",remove)
+    a[0].removeAttribute("class",elm)
     a[0].setAttribute("class",set)
-    //a[0].style.display= 'none';
 }
 
