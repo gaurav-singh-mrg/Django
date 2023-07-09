@@ -1,7 +1,8 @@
 
 function accordionShowHide(id , set){
-//    const a = document.getElementsById(id)
-    console.log(id)
+    const a = document.getElementsById(id)
+    console.log(a)
+    console.log('Gauravsingh')
 //    a.removeAttribute("class")
 }
 function onClickMedia(elm , set){

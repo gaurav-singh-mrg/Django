@@ -3,13 +3,13 @@
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                    <button class="btn" aria-expanded="true" onclick="onClickMedia('collapse','collapse show')">
+                    <button class="btn" aria-expanded="true" onclick="btn('first')">
                         Change Information
                     </button>
                 </h5>
             </div>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="first" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     <form>
                         <div class="row">
@@ -49,39 +49,60 @@
         <div class="card">
             <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
-                    <button class="btn" onclick="onClickMedia('collapse','collapse show')">
+                    <button class="btn" onclick="btn('second')">
                         Change Password
                     </button>
                 </h5>
             </div>
 
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="second" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     <form>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="First name">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                           placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="floatingPassword2"
+                                           placeholder="Confirm Password">
+                                    <label for="floatingPassword">Confirm Password</label>
+                                </div>
                             </div>
                         </div>
                         <br>
+                        <button type="button" class="btn btn-dark">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--third-->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn" onclick="btn('third')">
+                        Privacy Settings
+                    </button>
+                </h5>
+            </div>
+
+            <div id="third" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <form>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Country">
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox
+                                        input</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                </div>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="State">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="PhoneNumber">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Email Address">
+                                <input type="text" class="form-control" placeholder="Confirm Password">
                             </div>
                         </div>
                         <br>
@@ -91,9 +112,26 @@
             </div>
         </div>
 
-
     </div>
 </div>
+
+
+<!--javascript code -->
+<script>
+function btn(id){
+    const a = document.getElementById(id);
+    const b = a.classList
+    if(b[0] == 'show')
+    {
+        a.removeAttribute("class","show")
+        a.setAttribute("class", "collapse")
+    }
+    else
+        a.setAttribute("class", "show")
+    console.log(a.classList)
+}
+
+</script>
 
 
 
