@@ -1,18 +1,15 @@
 <div class="container">
-
-
     <div id="accordion">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                            aria-controls="collapseOne">
+                    <button class="btn" aria-expanded="true" onclick="onClickMedia('collapse','collapse show')">
                         Change Information
                     </button>
                 </h5>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     <form>
                         <div class="row">
@@ -52,14 +49,13 @@
         <div class="card">
             <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                            aria-controls="collapseOne">
+                    <button class="btn" onclick="onClickMedia('collapse','collapse show')">
                         Change Password
                     </button>
                 </h5>
             </div>
 
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     <form>
                         <div class="row">
@@ -98,5 +94,6 @@
 
     </div>
 </div>
+
 
 
