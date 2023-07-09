@@ -32,7 +32,7 @@
     </div>
     <!--Photos row start -->
     <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="submit" class="btn btn-outline-primary">
+        <button type="submit" aria-pressed='false' class="btn btn-outline-primary {%if mediabtn%} Active {%endif%}">
             <a href="media">Media</a>
         </button>
         <button type="submit" class="btn btn-outline-primary">
@@ -44,12 +44,12 @@
     </div>
 </div>
 <br>
-
+{%if mediabtn %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for image in media %}
     <div class="col">
         <div class="card h-100">
-            <img src="/{{image.imageField}}" class="card-img-top" alt="...">
+            <img src="/{{image.imageField}}" class="card-img-top" alt="image">
             <div class="card-body">
                 <h5 class="card-title">Like Count </h5>
                 <p class="card-text"> {{image.caption}}</p>
@@ -58,9 +58,10 @@
     </div>
     {%endfor%}
 </div>
+{%endif%}
+
 {% if settings %}
 {%include 'User/settings.html' %}
-
 {%endif%}
 
 

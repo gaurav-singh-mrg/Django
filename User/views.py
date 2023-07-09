@@ -32,6 +32,7 @@ def profile(request, btnSelect='media'):
     }
     if btnSelect == 'media':
         print("media")
+        context['mediabtn'] = True
         user_photos = imageUploaded.objects.filter(userID=request.user.id, Active=True).values('id', 'imageField',
                                                                                                'caption')
         context['media'] = user_photos
