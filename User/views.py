@@ -9,6 +9,7 @@ from AddUser.models import FollowData
 from Browse.models import imageUploaded
 from AddUser.models import users_info
 
+
 # Create your views here.
 @login_required(login_url='/auth/login')
 def calender(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -33,20 +34,18 @@ def profile(request, btnSelect='media'):
     if btnSelect == 'media':
         print("media")
         context['mediabtn'] = True
-        user_photos = imageUploaded.objects.filter(userID=request.user.id, Active=True).values('id', 'imageField',
-                                                                                               'caption')
-        context['media'] = user_photos
+        userInfo = imageUploaded.objects.filter(userID=request.user.id, Active=True).values('id', 'imageField',
+                                                                                            'caption')
+        context['media'] = userInfo
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
         if request.method == "POST":
             pass
-
         print("settings selected")
-        userExtraInfo = users_info.objects.filter(Userid=request.user.id)
-        print(userExtraInfo.query.__str__())
+        userExtraInfo = users_info.objects.filter(Userid=request.user.id).values()
         print(f'UserInfo => {userExtraInfo}')
-        context['settings'] = True
-        context['userExtraInfo'] = userExtraInfo
+        context['settingsbtn'] = True
+        context['settings'] = userExtraInfo
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")
