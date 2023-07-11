@@ -7,7 +7,7 @@ from calendar import HTMLCalendar
 from django.contrib.auth.models import User
 from AddUser.models import FollowData
 from Browse.models import imageUploaded
-
+from AddUser.models import users_info
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -38,8 +38,15 @@ def profile(request, btnSelect='media'):
         context['media'] = user_photos
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
+        if request.method == "POST":
+            pass
+
         print("settings selected")
+        userExtraInfo = users_info.objects.filter(Userid=request.user.id)
+        print(userExtraInfo.query.__str__())
+        print(f'UserInfo => {userExtraInfo}')
         context['settings'] = True
+        context['userExtraInfo'] = userExtraInfo
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class imageUploaded(models.Model):
     userID = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    imageField = models.ImageField()
+    imageField = models.ImageField(upload_to='')
     caption = models.TextField(default='No Caption')
     likesCount = models.IntegerField(default=0)
     Active = models.BooleanField(default=True, null=False)

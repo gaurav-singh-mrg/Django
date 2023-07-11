@@ -9,9 +9,13 @@ class users_info(models.Model):
     Userid = models.ForeignKey(User, on_delete=models.CASCADE)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
     Country = models.CharField(max_length=255, null=True)
-    Phone = models.CharField('Contact Phone', null=True, max_length=20)
+    State = models.CharField(max_length=255, null=True)
+    Phone = models.CharField('ContactPhone', null=True, max_length=20)
+    DateOfBirth = models.DateTimeField('DOB', null=True)
+    ProfilePic = models.ImageField(upload_to='media/ProfilePic', default=None, null=True)
     FollowerCount = models.IntegerField(default=0)
     FollowingCount = models.IntegerField(default=0)
+    Active = models.BooleanField(default=True)
 
     # default ordering
     class META:
