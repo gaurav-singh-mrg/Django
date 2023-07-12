@@ -43,8 +43,13 @@ def profile(request, btnSelect='media'):
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
         if request.method == "POST":
-            b = request.POST.get('first_name', False)
+            first_name = request.POST.get('first_name', False)
+            middle_name = request.POST.get('middle_name', False)
+            last_name = request.POST.get('last_name', False)
+            dateofbirth = request.POST.get('dateofbirth', False)
+
             print(f"b => {b}")
+            print(f"c => {c}")
         print("settings selected")
         userExtraInfo = users_info.objects.filter(Userid=request.user.id).values()
         context['settingsbtn'] = True
