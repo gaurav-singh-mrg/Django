@@ -16,11 +16,10 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col ">
-
                                 <div class="card" style="width: 20rem;">
                                     <img class="card-img-top"
                                          src="/{{a.ProfilePic}}"
-                                         alt="User Profile Picture"
+                                         alt="Change Profile Picture"
                                     >
                                     <input type="file" class="form-control" id="inputGroupFile03">
                                 </div>
@@ -28,32 +27,37 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <input type="text" class="form-control"
-                                           placeholder="First name = {{user.first_name }}">
+                                    <label for="first_name"></label>
+                                    <input type="text" class="form-control" id="first_name"
+                                           value="{{user.first_name }}"
+                                           name="first_name"
+                                           placeholder="First name : {{user.first_name }}">
                                 </div>
 
                                 <div class="row">
-                                    <input type="text" class="form-control"
-                                           placeholder="Middle name = {{user.first_name}}">
+                                    <input type="text" class="form-control" id="middle_name"
+                                           placeholder="Middle name : {{user.middle_name}}">
                                 </div>
                                 <div class="row">
-                                    <input type="text" class="form-control"
-                                           placeholder="Last name = {{user.last_name}}">
+                                    <input type="text" class="form-control" id="last_name"
+                                           placeholder="Last name : {{user.last_name}}">
                                 </div>
                                 <div class="row">
                                     <input type="text" class="form-control" onfocus="(this.type='date')"
-                                           onblur="(this.type='text')"
-                                           placeholder="Date Of Birth = {{a.DateOfBirth}}">
+                                           onblur="(this.type='text')" id="dateofbirth"
+                                           placeholder="Date Of Birth : {{a.DateOfBirth}}">
                                 </div>
                                 <div class="row">
-                                    <input type="text" class="form-control" placeholder="Country = {{a.Country}}">
+                                    <input type="text" class="form-control" id="country"
+                                           placeholder="Country : {{a.Country}}">
                                 </div>
                                 <div class="row">
-                                    <input type="text" class="form-control" placeholder="State = {{a.State}}">
+                                    <input type="text" class="form-control" id="state"
+                                           placeholder="State : {{a.State}}">
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <button class="btn btn-primary" type="submit">Save</button>
+                                    <button class="btn btn-primary" value="OK" type="submit">Save</button>
                                 </div>
                             </div>
                         </div>

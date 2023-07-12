@@ -27,10 +27,7 @@ def profile(request, btnSelect='media'):
     Follower = FollowData.objects.filter(UserId=request.user.id).count()
     Following = FollowData.objects.filter(FollowersId=request.user.id).count()
     profilepic1 = users_info.objects.filter(Userid=request.user.id).values('ProfilePic')
-    print(f'profilepic0 {profilepic1[0]}')
     a = profilepic1[0].get('ProfilePic')
-    print(f'profilepic {type(a)} {a}')
-
     context = {
         'userinfo': user,
         'Follower': Follower,
@@ -46,10 +43,10 @@ def profile(request, btnSelect='media'):
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
         if request.method == "POST":
-            pass
+            b = request.POST.get('first_name', False)
+            print(f"b => {b}")
         print("settings selected")
         userExtraInfo = users_info.objects.filter(Userid=request.user.id).values()
-        print(f'UserInfo => {userExtraInfo}')
         context['settingsbtn'] = True
         context['settings'] = userExtraInfo
         return render(request, 'User/profile.html', context)
