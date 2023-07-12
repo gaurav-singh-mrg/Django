@@ -26,10 +26,16 @@ def profile(request, btnSelect='media'):
     user = User.objects.filter(id=request.user.id).values('id', 'username', 'first_name', 'last_name')
     Follower = FollowData.objects.filter(UserId=request.user.id).count()
     Following = FollowData.objects.filter(FollowersId=request.user.id).count()
+    profilepic1 = users_info.objects.filter(Userid=request.user.id).values('ProfilePic')
+    print(f'profilepic0 {profilepic1[0]}')
+    a = profilepic1[0].get('ProfilePic')
+    print(f'profilepic {type(a)} {a}')
+
     context = {
         'userinfo': user,
         'Follower': Follower,
-        'Following': Following
+        'Following': Following,
+        'profilepic': a
     }
     if btnSelect == 'media':
         print("media")
