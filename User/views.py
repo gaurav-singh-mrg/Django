@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,7 @@ from django.contrib.auth.models import User
 from AddUser.models import FollowData
 from Browse.models import imageUploaded
 from AddUser.models import users_info
-
+from pathlib import Path
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -71,7 +72,7 @@ def profile(request, btnSelect='media'):
             if state != '':
                 userExtraInfo.update(State=state)
             if profilepic:
-                userExtraInfo.update(ProfilePic=profilepic)
+                userExtraInfo.save(ProfilePic=profilepic)
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")

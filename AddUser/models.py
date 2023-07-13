@@ -12,7 +12,7 @@ class users_info(models.Model):
     State = models.CharField(max_length=255, null=True)
     Phone = models.CharField('ContactPhone', null=True, max_length=20)
     DateOfBirth = models.DateTimeField('DOB', null=True)
-    ProfilePic = models.ImageField(upload_to='media/ProfilePic', default=None, null=True)
+    ProfilePic = models.ImageField(upload_to='ProfilePic', default=None, null=True)
     FollowerCount = models.IntegerField(default=0)
     FollowingCount = models.IntegerField(default=0)
     Active = models.BooleanField(default=True)
