@@ -16,6 +16,7 @@ class users_info(models.Model):
     FollowerCount = models.IntegerField(default=0)
     FollowingCount = models.IntegerField(default=0)
     Active = models.BooleanField(default=True)
+    PrivateAccount = models.BooleanField(default=False)
 
     # default ordering
     class META:
