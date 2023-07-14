@@ -10,6 +10,7 @@ from AddUser.models import FollowData
 from Browse.models import imageUploaded
 from AddUser.models import users_info
 from pathlib import Path
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
@@ -58,7 +59,7 @@ def profile(request, btnSelect='media'):
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
             profilepic = request.POST.get('profilepic', False)
-
+            print(f'profilepic0 => {profilepic}')
             if first_name != '':
                 user.first_name = first_name
                 user.update(first_name=first_name)
@@ -75,8 +76,7 @@ def profile(request, btnSelect='media'):
                 print(f'profilepic => {profilepic}')
                 path = os.path.join('ProfilePic', profilepic)
                 print(f'path => {path}')
-                userExtraInfo.ProfilePic = profilepic
-                userExtraInfo.save()
+                userExtraInfo.update(ProfilePic=profilepic)
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")
