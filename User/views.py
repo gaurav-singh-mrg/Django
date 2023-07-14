@@ -11,6 +11,7 @@ from Browse.models import imageUploaded
 from AddUser.models import users_info
 from pathlib import Path
 
+
 # Create your views here.
 @login_required(login_url='/auth/login')
 def calender(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
@@ -45,9 +46,10 @@ def profile(request, btnSelect='media'):
     if btnSelect == 'settings':
 
         print("settings selected")
-        userExtraInfo = users_info.objects.filter(Userid=request.user.id).values()
+        userExtraInfo = users_info.objects.get(Userid=request.user.id)
         context['settingsbtn'] = True
         context['settings'] = userExtraInfo
+        context['a'] = userExtraInfo
         if request.method == "POST":
             first_name = request.POST.get('first_name', False)
             # middle_name = request.POST.get('middle_name', False)
@@ -56,13 +58,10 @@ def profile(request, btnSelect='media'):
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
             profilepic = request.POST.get('profilepic', False)
-            print(f'profilepic => {profilepic}')
+
             if first_name != '':
                 user.first_name = first_name
                 user.update(first_name=first_name)
-            # if middle_name != '':
-            #     pass
-            #     user.update(middle_name=middle_name)
             if last_name != '':
                 user.update(last_name=last_name)
             if dateofbirth != '':
@@ -72,7 +71,12 @@ def profile(request, btnSelect='media'):
             if state != '':
                 userExtraInfo.update(State=state)
             if profilepic:
-                userExtraInfo.save(ProfilePic=profilepic)
+                print(f'profilepic1 => {request.FILES}')
+                print(f'profilepic => {profilepic}')
+                path = os.path.join('ProfilePic', profilepic)
+                print(f'path => {path}')
+                userExtraInfo.ProfilePic = profilepic
+                userExtraInfo.save()
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")

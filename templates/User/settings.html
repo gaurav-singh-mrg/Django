@@ -1,5 +1,4 @@
 {% load static %}
-{%for a in settings%}
 <div class="container">
     <div id="accordion">
         <div class="card">
@@ -31,12 +30,6 @@
                                            name="first_name"
                                            placeholder="First name : {{user.first_name }}">
                                 </div>
-
-                                <!--                                <div class="row">-->
-                                <!--                                    <input type="text" class="form-control" id="middle_name"-->
-                                <!--                                           name="middle_name"-->
-                                <!--                                           placeholder="Middle name : {{user.middle_name}}">-->
-                                <!--                                </div>-->
                                 <div class="row">
                                     <input type="text" class="form-control" id="last_name" name="last_name"
                                            placeholder="Last name : {{user.last_name}}">
@@ -134,7 +127,7 @@
     </div>
 
 </div>
-{%endfor%}
+
 <!--</div>-->
 
 
