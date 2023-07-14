@@ -16,11 +16,14 @@
                         <div class="row">
                             <div class="col ">
                                 <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top"
+                                    <img class="card-img-top" name="PlaceForProfilePic" id="PlaceForProfilePic"
                                          src="/{{a.ProfilePic}}"
                                          alt="Change Profile Picture"
                                     >
-                                    <input type="file" class="form-control" name="profilepic" id="inputGroupFile03">
+                                    <input type="file" class="form-control" name="profilepic" accept="image/*"
+                                           id="updbtn"
+                                           onclick="changeProfilePic('PlaceForProfilePic', 'updbtn')"
+                                    >
                                 </div>
 
                             </div>
@@ -144,6 +147,14 @@ function btn(id){
     else
         a.setAttribute("class", "show")
     console.log(a.classList)
+}
+
+function changeProfilePic(id , value){
+    const a = document.getElementById(id);
+    const b = document.getElementById(value);
+    console.log(b.value)
+    a.src= b.value
+
 }
 </script>
 
