@@ -1,9 +1,20 @@
 
-.msg{
-    background-color:aquamarine;
+.msg {
+    background-color: aquamarine;
     border: solid black 1px;
     display: block;
 }
-.hidemsg{
+
+.hidemsg {
     display: none;
+}
+
+#gk {
+    margin-top: 100px;
+    background-color: rgb(233, 233, 233);
+}
+
+.gk {
+    margin-top: 100px;
+    background-color: rgb(233, 233, 233);
 }

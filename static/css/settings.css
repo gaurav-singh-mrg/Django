@@ -1,6 +1,34 @@
 
-.PlaceForProfilePic {
-  width: 50px;
-  height: 50px;
-  border: solid 10px red;
+#editFields {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+#PlaceForProfilePic {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 50rem;
+    max-height: 20rem;
+    background-color: #2dff0e;
+    border: aquamarine;
+}
+
+#id_imageField {
+    width: inherit;
+    height: auto;
+    display: block;
+    max-width: 50rem;
+    max-height: 20rem;
+    background-color: #2dff0e;
+    border: aquamarine;
+}
+
+.gk {
+    margin: auto;
+    margin-top: 10px;
+    background-color: beige;
+    border-color: aquamarine;
+    border-style: groove;
+    height: 3rem;
 }

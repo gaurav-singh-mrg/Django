@@ -17,44 +17,45 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col ">
-                                    <img class="img-fluid" name="PlaceForProfilePic" id="PlaceForProfilePic"
+                                    <img id="PlaceForProfilePic" class="img-fluid img-thumbnail"
                                          src="/{{a.ProfilePic}}"
                                          alt="Change Profile Picture"
-
                                     >
                                     <input type="file" class="form-control" name="imageField" accept="image/*"
                                            id="id_imageField" value="/{{a.ProfilePic}}"
                                            onblur="ChangePicture('PlaceForProfilePic','id_imageField')"
                                     >
                                 </div>
-                            <div class="col">
-                                <div class="row">
-                                    <input type="text" class="form-control" id="first_name"
-                                           name="first_name"
-                                           placeholder="First name : {{user.first_name }}">
+                                <div class="col">
+                                    <div class="editFields">
+                                        <div class="row">
+                                            <input type="text" class="gk" id="first_name"
+                                                   name="first_name"
+                                                   placeholder="First name : {{user.first_name }}">
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="gk" id="last_name" name="last_name"
+                                                   placeholder="Last name : {{user.last_name}}">
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="gk" onfocus="(this.type='date')"
+                                                   onblur="(this.type='text')" id="dateofbirth" name="dateofbirth"
+                                                   placeholder="Date Of Birth : {{a.DateOfBirth}}">
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="gk" id="country" name="country"
+                                                   placeholder="Country : {{a.Country}}">
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="gk" id="state" name="state"
+                                                   placeholder="State : {{a.State}}">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <button class="btn btn-primary" value="OK" type="submit">Save</button>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                           placeholder="Last name : {{user.last_name}}">
-                                </div>
-                                <div class="row">
-                                    <input type="text" class="form-control" onfocus="(this.type='date')"
-                                           onblur="(this.type='text')" id="dateofbirth" name="dateofbirth"
-                                           placeholder="Date Of Birth : {{a.DateOfBirth}}">
-                                </div>
-                                <div class="row">
-                                    <input type="text" class="form-control" id="country" name="country"
-                                           placeholder="Country : {{a.Country}}">
-                                </div>
-                                <div class="row">
-                                    <input type="text" class="form-control" id="state" name="state"
-                                           placeholder="State : {{a.State}}">
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <button class="btn btn-primary" value="OK" type="submit">Save</button>
-                                </div>
-                            </div>
                             </div>
                         </div>
 
