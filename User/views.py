@@ -53,13 +53,14 @@ def profile(request, btnSelect='media'):
         context['a'] = userExtraInfo
         if request.method == "POST":
             first_name = request.POST.get('first_name', False)
-            # middle_name = request.POST.get('middle_name', False)
             last_name = request.POST.get('last_name', False)
             dateofbirth = request.POST.get('dateofbirth', False)
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
-            profilepic = request.POST.get('profilepic', False)
+            profilepic = request.POST.get(request.FILES["imageField"], False)
+            profilepic = request.FILES["imageField"]
             print(f'profilepic0 => {profilepic}')
+            print(f'profilepic1 => {request.FILES["imageField"]}')
             if first_name != '':
                 user.first_name = first_name
                 user.update(first_name=first_name)
@@ -72,11 +73,13 @@ def profile(request, btnSelect='media'):
             if state != '':
                 userExtraInfo.update(State=state)
             if profilepic:
+                print('inside save')
                 print(f'profilepic1 => {request.FILES}')
                 print(f'profilepic => {profilepic}')
-                path = os.path.join('ProfilePic', profilepic)
-                print(f'path => {path}')
-                userExtraInfo.update(ProfilePic=profilepic)
+                # path = os.path.join('ProfilePic', profilepic)
+                # print(f'path => {path}')
+                userExtraInfo.ProfilePic = profilepic
+                userExtraInfo.save()
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")
