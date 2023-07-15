@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
-
 {%include 'navbar.html'%}
-{% load static%}
 
 <div class="card border-success mb-3" style="max-width: 18rem;">
     <div class="card-header bg-transparent border-success">Username</div>
@@ -25,6 +23,7 @@
                     Likes
                     <img src="{% static 'image/like.svg' %}" class="card-img-top "
                          alt="Like" height="50px" width="80px">
+
                 </div>
                 <div class="col">
                     Comment
@@ -42,6 +41,6 @@
 
     </div>
 </div>
-<script src="{ % static 'jscode/main.js'% }"></script>
+<script src="{% static 'jscode/main.js' %}"></script>
 </body>
 </html>

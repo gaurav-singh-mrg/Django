@@ -1,4 +1,5 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
 <div class="container">
     <div id="accordion">
         <div class="card">
@@ -13,20 +14,19 @@
                 <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="row">
-                            <div class="col ">
-                                <div class="card" style="width: 20rem;">
-                                    <img class="card-img-top" name="PlaceForProfilePic" id="PlaceForProfilePic"
+                        <div class="col">
+                            <div class="row">
+                                <div class="col ">
+                                    <img class="img-fluid" name="PlaceForProfilePic" id="PlaceForProfilePic"
                                          src="/{{a.ProfilePic}}"
                                          alt="Change Profile Picture"
+
                                     >
                                     <input type="file" class="form-control" name="imageField" accept="image/*"
                                            id="id_imageField" value="/{{a.ProfilePic}}"
+                                           onblur="ChangePicture('PlaceForProfilePic','id_imageField')"
                                     >
-
                                 </div>
-
-                            </div>
                             <div class="col">
                                 <div class="row">
                                     <input type="text" class="form-control" id="first_name"
@@ -55,6 +55,7 @@
                                     <button class="btn btn-primary" value="OK" type="submit">Save</button>
                                 </div>
                             </div>
+                            </div>
                         </div>
 
                     </form>
@@ -82,6 +83,7 @@
                         <div class="col">
                             <div class="form-floating">
                                 <input type="password" class="form-control" id="floatingPassword"
+                                       name="pwd"
                                        placeholder="Password">
                                 <label for="floatingPassword">Password</label>
                             </div>
@@ -89,13 +91,14 @@
                         <div class="col">
                             <div class="form-floating">
                                 <input type="password" class="form-control" id="floatingPassword2"
+                                       name="confirmpwd"
                                        placeholder="Confirm Password">
                                 <label for="floatingPassword">Confirm Password</label>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <button type="button" class="btn btn-dark">Save</button>
+                    <button type="submit" class="btn btn-dark">Save</button>
                 </form>
             </div>
         </div>
@@ -118,7 +121,8 @@
                         <div class="col">
                             <div class="form-check form-switch">
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Private Account</label>
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                       name="switch" checked>
                             </div>
                         </div>
                     </div>
@@ -149,19 +153,28 @@ function btn(id){
 }
 
 
+function ChangePicture(src,target){
+    const a = document.getElementById(src)
+    console.log(a)
+
+    console.log(a.value)
+    {% comment %} alert('Must Select any of your photo for upload!'); {% endcomment %}
+}
+
+
 function showImage(src,target) {
   var fr=new FileReader();
+  // when image is loaded, set the src of the image where you want to display it
   fr.onload = function(e) { target.src = this.result; };
   src.addEventListener("change",function() {
+    // fill fr with image data
     fr.readAsDataURL(src.files[0]);
   });
 }
 
-var src = document.getElementById("src");
-var target = document.getElementById("target");
-showImage('PlaceForProfilePic','id_imageField');
-
+var src = document.getElementById("id_imageField");
+var target = document.getElementById("PlaceForProfilePic");
+showImage(src,target);
 </script>
-
 
 

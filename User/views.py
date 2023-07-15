@@ -45,7 +45,6 @@ def profile(request, btnSelect='media'):
         context['media'] = userInfo
         return render(request, 'User/profile.html', context)
     if btnSelect == 'settings':
-
         print("settings selected")
         userExtraInfo = users_info.objects.get(Userid=request.user.id)
         context['settingsbtn'] = True
@@ -57,9 +56,7 @@ def profile(request, btnSelect='media'):
             dateofbirth = request.POST.get('dateofbirth', False)
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
-            profilepic = request.FILES["imageField"]
-            print(f'profilepic0 => {profilepic}')
-            print(f'profilepic1 => {request.FILES}')
+            profilepic = request.FILES["imageField"]  # for saving images we need to fetch request.files
             if first_name != '':
                 user.first_name = first_name
                 user.update(first_name=first_name)
@@ -72,11 +69,9 @@ def profile(request, btnSelect='media'):
             if state != '':
                 userExtraInfo.update(State=state)
             if profilepic:
-                print('inside save')
-                # path = os.path.join('ProfilePic', profilepic)
-                # print(f'path => {path}')
                 userExtraInfo.ProfilePic = profilepic
                 userExtraInfo.save()
+            print(f'Private Account  {request.POST.get("switch")}')
         return render(request, 'User/profile.html', context)
     if btnSelect == 'tagged':
         print("tagged")
