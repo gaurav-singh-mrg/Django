@@ -57,10 +57,9 @@ def profile(request, btnSelect='media'):
             dateofbirth = request.POST.get('dateofbirth', False)
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
-            profilepic = request.POST.get(request.FILES["imageField"], False)
             profilepic = request.FILES["imageField"]
             print(f'profilepic0 => {profilepic}')
-            print(f'profilepic1 => {request.FILES["imageField"]}')
+            print(f'profilepic1 => {request.FILES}')
             if first_name != '':
                 user.first_name = first_name
                 user.update(first_name=first_name)
@@ -74,8 +73,6 @@ def profile(request, btnSelect='media'):
                 userExtraInfo.update(State=state)
             if profilepic:
                 print('inside save')
-                print(f'profilepic1 => {request.FILES}')
-                print(f'profilepic => {profilepic}')
                 # path = os.path.join('ProfilePic', profilepic)
                 # print(f'path => {path}')
                 userExtraInfo.ProfilePic = profilepic

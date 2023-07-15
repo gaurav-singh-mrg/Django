@@ -20,11 +20,10 @@
                                          src="/{{a.ProfilePic}}"
                                          alt="Change Profile Picture"
                                     >
-                                    <input type="file" class="form-control" name="profilepic" accept="image/*"
-                                           id="updbtn">
-                                    <p class="file-upload">Currently: <a href="/Profile.png">Profile.png</a><br>
-                                        Change:
-                                        <input type="file" name="imageField" accept="image/*" id="id_imageField"></p>
+                                    <input type="file" class="form-control" name="imageField" accept="image/*"
+                                           id="id_imageField" value="/{{a.ProfilePic}}"
+                                    >
+
                                 </div>
 
                             </div>
@@ -147,16 +146,21 @@ function btn(id){
     }
     else
          a.setAttribute("class", "show")
-    console.log(a.classList)
 }
 
-function changeProfilePic(id , value){
-    const a = document.getElementById(id);
-    const b = document.getElementById(value);
-    console.log(b.value)
-    a.src= b.value
 
+function showImage(src,target) {
+  var fr=new FileReader();
+  fr.onload = function(e) { target.src = this.result; };
+  src.addEventListener("change",function() {
+    fr.readAsDataURL(src.files[0]);
+  });
 }
+
+var src = document.getElementById("src");
+var target = document.getElementById("target");
+showImage('PlaceForProfilePic','id_imageField');
+
 </script>
 
 
