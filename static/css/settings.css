@@ -1,7 +1,16 @@
-
-
+#id_imageField {
+    float: right;
+    width: inherit;
+    height: auto;
+    display: block;
+    max-width: 50rem;
+    max-height: 20rem;
+    border: aquamarine;
+}
 
 #PlaceForProfilePic {
+    float: right;
+    margin-right: 5rem;
     width: auto;
     height: auto;
     display: block;
@@ -15,14 +24,9 @@
     position: absolute;
 }
 
-#id_imageField {
-    width: inherit;
-    height: auto;
-    display: block;
-    max-width: 50rem;
-    max-height: 20rem;
-    border: aquamarine;
-    position: relative;
+
+#left {
+    text-align: left;
 }
 
 .gk {
@@ -32,3 +36,4 @@
     height: 3rem;
     border-radius: 1rem;
 }
+

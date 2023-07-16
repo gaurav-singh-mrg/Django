@@ -16,15 +16,19 @@
                         {% csrf_token %}
                         <div class="col">
                             <div class="row">
-                                <div class="col ">
-                                    <img id="PlaceForProfilePic"
-                                         src="/{{a.ProfilePic}}"
-                                         alt="Change Profile Picture"
-                                    >
+                                <div class="col">
                                     <input type="file" class="updBtn" name="imageField" accept="image/*"
-                                           id="id_imageField" value="/{{a.ProfilePic}}"
+                                           id="id_imageField" value="/{{ a.ProfilePic }}"
                                            onblur="ChangePicture('PlaceForProfilePic','id_imageField')"
                                     >
+                                    <div class="alignleftimage">
+                                        <img id="PlaceForProfilePic"
+                                             src="/{{ a.ProfilePic }}"
+                                             alt="Change Profile Picture"
+                                        >
+
+                                    </div>
+
                                 </div>
                                 <div class="col">
                                     <div class="editFields">
