@@ -1,8 +1,5 @@
 
-#editFields {
-    margin-right: 10px;
-    padding: 10px;
-}
+
 
 #PlaceForProfilePic {
     width: auto;
@@ -14,21 +11,24 @@
     border: aquamarine;
 }
 
+#updBtn {
+    position: absolute;
+}
+
 #id_imageField {
     width: inherit;
     height: auto;
     display: block;
     max-width: 50rem;
     max-height: 20rem;
-    background-color: #2dff0e;
     border: aquamarine;
+    position: relative;
 }
 
 .gk {
-    margin: auto;
-    margin-top: 10px;
-    background-color: beige;
+    margin: 10px auto auto;
     border-color: aquamarine;
     border-style: groove;
     height: 3rem;
+    border-radius: 1rem;
 }

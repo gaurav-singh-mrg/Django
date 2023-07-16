@@ -17,11 +17,11 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col ">
-                                    <img id="PlaceForProfilePic" class="img-fluid img-thumbnail"
+                                    <img id="PlaceForProfilePic"
                                          src="/{{a.ProfilePic}}"
                                          alt="Change Profile Picture"
                                     >
-                                    <input type="file" class="form-control" name="imageField" accept="image/*"
+                                    <input type="file" class="updBtn" name="imageField" accept="image/*"
                                            id="id_imageField" value="/{{a.ProfilePic}}"
                                            onblur="ChangePicture('PlaceForProfilePic','id_imageField')"
                                     >
@@ -141,20 +141,18 @@
 
 <!--javascript code -->
 <script>
-function btn(id){
-    const a = document.getElementById(id);
-    const b = a.classList
-    if(b[0] == 'show')
-    {
-        a.removeAttribute("class","show")
-        a.setAttribute("class", "collapse")
+    function btn(id) {
+        const a = document.getElementById(id);
+        const b = a.classList
+        if (b[0] === 'show') {
+            a.removeAttribute("class", "show")
+            a.setAttribute("class", "collapse")
+        } else
+            a.setAttribute("class", "show")
     }
-    else
-         a.setAttribute("class", "show")
-}
 
 
-function ChangePicture(src,target){
+    function ChangePicture(src, target) {
     const a = document.getElementById(src)
     console.log(a)
 
