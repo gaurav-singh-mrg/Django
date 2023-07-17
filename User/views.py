@@ -6,6 +6,8 @@ from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
 from django.contrib.auth.models import User
+from django.utils.datastructures import MultiValueDictKeyError
+
 from AddUser.models import FollowData
 from Browse.models import imageUploaded
 from AddUser.models import users_info
@@ -56,20 +58,29 @@ def profile(request, btnSelect='media'):
             dateofbirth = request.POST.get('dateofbirth', False)
             country = request.POST.get('country', False)
             state = request.POST.get('state', False)
-            profilepic = request.FILES["imageField"]  # for saving images we need to fetch request.files
-            if first_name != '':
+            try:
+                profilepic = request.FILES["imageField"]  # for saving images we need to fetch request.files
+            except MultiValueDictKeyError:
+                print("Except Block")
+                profilepic = False
+            if first_name:
                 user.first_name = first_name
                 user.update(first_name=first_name)
-            if last_name != '':
+            if last_name:
                 user.update(last_name=last_name)
-            if dateofbirth != '':
-                userExtraInfo.update(DateOfBirth=dateofbirth)
-            if country != '':
+            if dateofbirth:
+                userExtraInfo.DateOfBirth = dateofbirth
+                userExtraInfo.save()
+            if country:
                 userExtraInfo.update(Country=country)
-            if state != '':
+            if state:
                 userExtraInfo.update(State=state)
             if profilepic:
                 userExtraInfo.ProfilePic = profilepic
+                userExtraInfo.save()
+            PvtAcct = request.POST.get('switch', False)
+            if PvtAcct:
+                userExtraInfo.PrivateAccount = profilepic
                 userExtraInfo.save()
             print(f'Private Account  {request.POST.get("switch")}')
         return render(request, 'User/profile.html', context)
