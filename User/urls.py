@@ -7,4 +7,5 @@ urlpatterns = [
     path('calender/<int:year>/<str:month>', User.views.calender, name='calender'),
     path('profile/', User.views.profile, name='profile'),
     path('profile/<str:btnSelect>', User.views.profile, name='profile'),
+    path('profile/<str:btnSelect>/changeinfo', User.views.changeInfo, name='changeinfo')
 ]

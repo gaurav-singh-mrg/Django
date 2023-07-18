@@ -80,6 +80,7 @@ def profile(request, btnSelect='media'):
                 userExtraInfo.save()
             PvtAcct = request.POST.get('switch', False)
             if PvtAcct:
+                print(f'Private Account  {request.POST.get("switch")}')
                 userExtraInfo.PrivateAccount = profilepic
                 userExtraInfo.save()
             print(f'Private Account  {request.POST.get("switch")}')
@@ -87,3 +88,42 @@ def profile(request, btnSelect='media'):
     if btnSelect == 'tagged':
         print("tagged")
         return render(request, 'User/profile.html', context)
+
+
+def changeInfo(request, btnSelect='media'):
+    print("inside here gk")
+    user = User.objects.filter(id=request.user.id).values('id', 'username', 'first_name', 'last_name')
+    userExtraInfo = users_info.objects.get(Userid=request.user.id)
+    return render(request, 'User/profile.html')
+    # if request.method == "POST":
+    #     first_name = request.POST.get('first_name', False)
+    #     last_name = request.POST.get('last_name', False)
+    #     dateofbirth = request.POST.get('dateofbirth', False)
+    #     country = request.POST.get('country', False)
+    #     state = request.POST.get('state', False)
+    #     try:
+    #         profilepic = request.FILES["imageField"]  # for saving images we need to fetch request.files
+    #     except MultiValueDictKeyError:
+    #         print("Except Block")
+    #         profilepic = False
+    #     if first_name:
+    #         user.first_name = first_name
+    #         user.update(first_name=first_name)
+    #     if last_name:
+    #         user.update(last_name=last_name)
+    #     if dateofbirth:
+    #         userExtraInfo.DateOfBirth = dateofbirth
+    #         userExtraInfo.save()
+    #     if country:
+    #         userExtraInfo.update(Country=country)
+    #     if state:
+    #         userExtraInfo.update(State=state)
+    #     if profilepic:
+    #         userExtraInfo.ProfilePic = profilepic
+    #         userExtraInfo.save()
+    #     PvtAcct = request.POST.get('switch', False)
+    #     if PvtAcct:
+    #         print(f'Private Account  {request.POST.get("switch")}')
+    #         userExtraInfo.PrivateAccount = profilepic
+    #         userExtraInfo.save()
+    #     print(f'Private Account  {request.POST.get("switch")}')
