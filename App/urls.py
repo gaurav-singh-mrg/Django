@@ -32,11 +32,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path(r'admin/', admin.site.urls, name='admin'),
     path('', Auth.views.index, name='index'),
-    path('auth/', include(Auth.urls), name='auth', namespace='auth'),
-    path('users/', include(User.urls), name='User', namespace='user'),
-    path('adduser/', include(AddUser.urls), name='AddUser', namespace='adduser'),
-    path('home/', include(Home.urls), name='home', namespace='home'),
-    path('browse/', include(browseUrl), name='Browse', namespace='browse')
+    path('auth/', include(Auth.urls, namespace='auth'), name='auth'),
+    path('users/', include(User.urls, namespace='user'), name='User'),
+    path('adduser/', include(AddUser.urls, namespace='adduser'), name='AddUser'),
+    path(r'home/', include(Home.urls, namespace='home'), name='home'),
+    path('browse/', include(browseUrl, namespace='browse'), name='Browse')
 ]
 
 if settings.DEBUG:

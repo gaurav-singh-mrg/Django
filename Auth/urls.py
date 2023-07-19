@@ -5,6 +5,7 @@ import Home.views
 from App import settings
 from Auth import views
 
+app_name = 'auth'
 urlpatterns = [
     # Auth Urls Start
     path('', Auth.views.index, name='index'),

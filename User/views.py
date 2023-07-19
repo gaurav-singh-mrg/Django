@@ -90,7 +90,7 @@ def profile(request, btnSelect='media'):
         return render(request, 'User/profile.html', context)
 
 
-def changeInfo(request, btnSelect='media'):
+def changeInfo(request):
     print("inside here gk")
     user = User.objects.filter(id=request.user.id).values('id', 'username', 'first_name', 'last_name')
     userExtraInfo = users_info.objects.get(Userid=request.user.id)
