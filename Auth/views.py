@@ -19,7 +19,7 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return redirect(reverse("home"))
+            return redirect(reverse("home:homepage", current_app=request.resolver_match.namespace))
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'
@@ -27,7 +27,6 @@ def Login(request):
     showEmailField = False
     form = forms.LoginForm()
     return render(request, 'Auth/Login.html', locals())
-    # return render(request, 'Home/home.html', locals())
 
 
 def Logout(request):
@@ -53,7 +52,8 @@ def signin(request):
             userid = User.objects.get(username=username)
             users_info(userid=userid).save()
             print(f"users_info {userid.id}")
-            return render(request, 'Auth/Login.html', locals())
+            return redirect(reverse("auth:login", current_app=request.resolver_match.namespace))
+            # return render(request, 'Auth/Login.html', locals())
         else:
             print("Invalid Form")
     Title = "Welcome,Please signin"
@@ -66,7 +66,7 @@ def signin(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect("/home")
+        return redirect(reverse("auth:login", current_app=request.resolver_match.namespace))
     else:
         messages.info(request, 'Welcome Please login', fail_silently=True)
         Title = "Welcome, Homepage"
