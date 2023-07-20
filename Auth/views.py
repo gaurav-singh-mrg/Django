@@ -1,9 +1,10 @@
 from django.conf.global_settings import LOGIN_REDIRECT_URL
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as ln, logout
-
+from django.urls import reverse
 import Auth
 from AddUser.models import users_info
 from . import forms
@@ -18,7 +19,7 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             ln(request, user)
-            return redirect('home')
+            return redirect(reverse("home"))
     signup = False
     Title = "Welcome,Please Login"
     Header = 'Log In'

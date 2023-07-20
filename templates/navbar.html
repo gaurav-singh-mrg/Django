@@ -46,14 +46,14 @@
                             Add User
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/adduser/info">Users</a></li>
-                        <li><a class="dropdown-item" href="/user/calender">Calender</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
+                            <li><a class="dropdown-item" href="{% url 'adduser:info' %}">Users</a></li>
+                            <li><a class="dropdown-item" href="{% url 'adduser:calender' %}">Calender</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ '/users/profile/' }}">Profile</a>
