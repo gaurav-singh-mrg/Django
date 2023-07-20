@@ -16,37 +16,37 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:homepage' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href=" {{'/browse/'}}">Browse</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'browse:Feed' %}">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href=" {{'/admin'}}">Admin</a>
+                    <a class="nav-link active" aria-current="page" href=" {{ '/admin' }}">Admin</a>
                 </li>
-                {% if not user.is_authenticated%}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{'/auth/login'}}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{'/auth/signin'}}">Signin</a>
-                </li>
-                {%endif%}
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth:signin' %}">Signin</a>
+                    </li>
+                {% endif %}
 
-                {% if user.is_authenticated%}
-                <!--                logout btn is only visible when user is loggend in -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{'/auth/logout'}}">Logout</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <!--                logout btn is only visible when user is loggend in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth:logout' %}">Logout</a>
+                    </li>
 
-                <!--                below code only visible when user is logged in -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/info" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Add User
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/adduser/info">Users</a></li>
+                    <!--                below code only visible when user is logged in -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/info" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Add User
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/adduser/info">Users</a></li>
                         <li><a class="dropdown-item" href="/user/calender">Calender</a></li>
                         <li>
                             <hr class="dropdown-divider">

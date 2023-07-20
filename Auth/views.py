@@ -65,7 +65,7 @@ def signin(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('homepage')
+        return redirect("/home")
     else:
         messages.info(request, 'Welcome Please login', fail_silently=True)
         Title = "Welcome, Homepage"

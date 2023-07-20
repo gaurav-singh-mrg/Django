@@ -11,14 +11,14 @@
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-{% for message in messages%}
-{% include 'message.html' %}
-{%endfor %}
+{% for message in messages %}
+    {% include 'message.html' %}
+{% endfor %}
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit"><a href="{{'auth/login'}}"> Log In </a></button>
-    <button type="submit"><a href="{{'auth/signin' }}"> SignUp </a></button>
+    <button type="submit"><a href="{% url 'auth:login' %}"> Log In </a></button>
+    <button type="submit"><a href="{% url 'auth:signin' %}"> SignUp </a></button>
 </form>
 <script src="{% static 'jscode/main.js' %}"></script>
 </body>

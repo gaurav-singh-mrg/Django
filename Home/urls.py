@@ -20,5 +20,5 @@ from django.urls import include
 
 app_name = 'home'
 urlpatterns = [
-    path('', views.Homepage, name="homepage"),
+    path('', views.homepage, name="homepage"),
 ]
