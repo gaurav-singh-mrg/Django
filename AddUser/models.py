@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 
 class users_info(models.Model):
     # CreatedDate = models.DateTimeField(auto_now_add=True, editable=False)
-
     Userid = models.ForeignKey(User, on_delete=models.CASCADE)
     UpdatedDate = models.DateTimeField(auto_now=True)  # changes value on update every
     Country = models.CharField(max_length=255, null=True)

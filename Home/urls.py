@@ -21,4 +21,5 @@ from django.urls import include
 app_name = 'home'
 urlpatterns = [
     path('', views.homepage, name="homepage"),
+    path('gk', views.Homepage.as_view(), name="ClassHomepage"),
 ]

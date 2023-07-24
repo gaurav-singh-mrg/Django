@@ -30,7 +30,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls, name='admin'),
+    path(r'admin', admin.site.urls, name='admin'),
     path('', Auth.views.index, name='index'),
     path('auth/', include(Auth.urls, namespace='auth'), name='auth'),
     path('users/', include(User.urls, namespace='user'), name='User'),
