@@ -4,6 +4,8 @@ from .models import users_info, FollowData
 from django.contrib.auth.models import User
 from django.db.models import Case, When, Value, F
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage  # adding pagination support
+from django.views.generic.list import ListView
+
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -31,13 +33,24 @@ def getinfo(request):
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
+# todo: need to properly code class view
+class GetInfo(ListView):
+    model = 'FollowData'
+    template_name = 'AddUser/UserInfo.html'
+
+    # paginate_by = 2
+    def get_queryset(self):
+        query_set = FollowData.objects.filter(UserId=self.request.user.id, Active=True).values('FollowersId')
+        return query_set
+
+
 @login_required(login_url='/auth/login')
 def followbtn(request, id):
     # check for valid request id
     if request.user.id == id:
         print("Same user can't fallow itself")
     isUserIDExist = User.objects.filter(id=id).count()
-    isUserExist = User.objects.filter(id=request.user.id ).values('id')
+    isUserExist = User.objects.filter(id=request.user.id).values('id')
     print(f'isUserExist => {isUserExist.query.__str__()}')
     if isUserIDExist == 1:
         '''going to update follower count'''
