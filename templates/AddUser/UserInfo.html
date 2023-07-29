@@ -37,7 +37,8 @@
 
         <div class="container">
             <div class="row row-cols-1 row-cols-md-6 g-4">
-                {% for CardHeader in page_obj.object_list %}
+                {#                {% for CardHeader in page_obj.object_list %}#}
+                {% for CardHeader in list %}
                 {# note that the list of posts are in the page_obj.object_list not page_obj #}
                 <div class="col">
                     <div class="card h-100">

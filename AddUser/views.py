@@ -37,10 +37,19 @@ def getinfo(request):
 class GetInfo(ListView):
     model = 'FollowData'
     template_name = 'AddUser/UserInfo.html'
+    context_object_name = 'list'
+    paginate_by = 12
 
-    # paginate_by = 2
     def get_queryset(self):
-        query_set = FollowData.objects.filter(UserId=self.request.user.id, Active=True).values('FollowersId')
+        a = FollowData.objects.filter(UserId=self.request.user.id, Active=True).values('FollowersId')
+        query_set = User.objects.annotate(
+            IsFollower=Case(
+                When(id__in=[a], then=Value(True)),
+                default=Value(False), )).exclude(id=self.request.user.id).order_by('first_name').values('id',
+                                                                                                        'username',
+                                                                                                        'first_name',
+                                                                                                        'last_name',
+                                                                                                        'IsFollower')
         return query_set
 
 
