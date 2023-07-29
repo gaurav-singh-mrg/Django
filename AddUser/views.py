@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
 from django.db.models import Case, When, Value, F
@@ -7,7 +9,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage  # addi
 from django.views.generic.list import ListView
 
 
-# Create your views here.
 @login_required(login_url='/auth/login')
 def getinfo(request):
     a = FollowData.objects.filter(UserId=request.user.id, Active=True).values('FollowersId')
@@ -34,8 +35,9 @@ def getinfo(request):
 
 
 # todo: need to properly code class view
+# @method_decorator(login_required, name="dispatch")
 class GetInfo(ListView):
-    model = 'FollowData'
+    # model = 'FollowData'
     template_name = 'AddUser/UserInfo.html'
     context_object_name = 'list'
     paginate_by = 12
