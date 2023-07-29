@@ -42,6 +42,7 @@ class GetInfo(ListView):
     context_object_name = 'list'
     paginate_by = 12
 
+    # print(f'context {context}')
     def get_queryset(self):
         a = FollowData.objects.filter(UserId=self.request.user.id, Active=True).values('FollowersId')
         query_set = User.objects.annotate(
@@ -53,6 +54,12 @@ class GetInfo(ListView):
                                                                                                         'last_name',
                                                                                                         'IsFollower')
         return query_set
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page = context['page_obj']
+        context['paginator_range'] = page.paginator.get_elided_page_range(page.number)
+        return context
 
 
 @login_required(login_url='/auth/login')
