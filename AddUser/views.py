@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 
 from .models import users_info, FollowData
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User
 from django.db.models import Case, When, Value, F
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage  # adding pagination support
 from django.views.generic.list import ListView
-
+from django.urls import reverse
 
 @login_required(login_url='/auth/login')
 def getinfo(request):
@@ -34,7 +35,7 @@ def getinfo(request):
     return render(request, 'AddUser/UserInfo.html', locals())
 
 
-# todo: need to properly code class view
+# todo: fix method decorater login required
 # @method_decorator(login_required, name="dispatch")
 class GetInfo(ListView):
     # model = 'FollowData'
@@ -66,7 +67,7 @@ class GetInfo(ListView):
 def followbtn(request, id):
     # check for valid request id
     if request.user.id == id:
-        print("Same user can't fallow itself")
+        print("Same user can't follow itself")
     isUserIDExist = User.objects.filter(id=id).count()
     isUserExist = User.objects.filter(id=request.user.id).values('id')
     print(f'isUserExist => {isUserExist.query.__str__()}')
@@ -88,4 +89,4 @@ def followbtn(request, id):
         # print(f'a => {a.query.__str__()}')
     else:
         print("Wrong User ID Provided")
-    return getinfo(request)
+    return redirect('adduser:info')
