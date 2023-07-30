@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
-
+from django.views.generic import DetailView
 from .models import users_info, FollowData
 from django.contrib.auth.models import User
 from django.db.models import Case, When, Value, F
@@ -10,32 +10,20 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage  # addi
 from django.views.generic.list import ListView
 from django.urls import reverse
 
-@login_required(login_url='/auth/login')
-def getinfo(request):
-    a = FollowData.objects.filter(UserId=request.user.id, Active=True).values('FollowersId')
-    list = User.objects.annotate(
-        IsFollower=Case(
-            When(id__in=[a], then=Value(True)),
-            default=Value(False), )).exclude(id=request.user.id).order_by('first_name').values('id', 'username',
-                                                                                               'first_name',
-                                                                                               'last_name',
-                                                                                               'IsFollower')
-    p = Paginator(list, 12)
-    page_number = request.GET.get('page')
-    if page_number is None:  # added to handel condition when page_number is none , FIrst time visiting the page
-        page_number = 1
-    try:
-        page_obj = p.get_page(page_number)
-    except PageNotAnInteger:
-        page_obj = p.page(1)
-    except EmptyPage:
-        page_obj = p.page(p.num_pages)
-    elidedPageRange = p.get_elided_page_range(number=page_number, on_each_side=2)
-    # print(f'C => {list.query.__str__()}')
-    return render(request, 'AddUser/UserInfo.html', locals())
+
+class UserDetailView(DetailView):
+    model = 'User'
+    template_name = 'AddUser/UserDetailView.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'list'
+
+    # def get_queryset(self, *args, **kwargs):
+    #     print(*args, **kwargs)
+    #     return 404
+    #     # return User.objects.filter(id=self.args['pk'])
 
 
-# todo: fix method decorater login required
+# todo: fix method decorator login required
 # @method_decorator(login_required, name="dispatch")
 class GetInfo(ListView):
     # model = 'FollowData'
@@ -43,7 +31,6 @@ class GetInfo(ListView):
     context_object_name = 'list'
     paginate_by = 12
 
-    # print(f'context {context}')
     def get_queryset(self):
         a = FollowData.objects.filter(UserId=self.request.user.id, Active=True).values('FollowersId')
         query_set = User.objects.annotate(

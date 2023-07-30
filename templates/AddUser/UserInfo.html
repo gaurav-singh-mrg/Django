@@ -11,68 +11,44 @@
     {% load static %}
     <br>
     <div>
-        {#        <nav aria-label="Page navigation">#}
-        {#            <ul class="pagination justify-content-center">#}
-        {#                {%if page_obj.has_previous %}#}
-        {#                <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>#}
-        {#                </li>#}
-        {#                {% endif %}#}
-        {##}
-        {#                {% for page_number in elidedPageRange %}#}
-        {#                {% if page_number == page_obj.paginator.ELLIPSIS %}#}
-        {#                {{page_number}}#}
-        {#                {% else %}#}
-        {#                <li class="page-item {% if page_number == page_obj.number %}active{% endif %}">#}
-        {#                    <a class="page-link {% if page_number == page_obj.number %}active{% endif %}"#}
-        {#                       href="?page={{page_number}}"> {{page_number}} </a>#}
-        {#                </li>#}
-        {#                {% endif %}#}
-        {#                {% endfor %}#}
-        {##}
-        {#                {%if page_obj.has_next %}#}
-        {#                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>#}
-        {#                {% endif %}#}
-        {#            </ul>#}
-        {#        </nav>#}
         {% if is_paginated %}
-            <nav aria-label="Page navigation conatiner">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">PREV </a></li>
-                {% endif %}
-
-                {% for i in paginator_range %}
-                    {% if page_obj.number == i %}
-                        <li class="active page-item">
-                            <span class="page-link">{{ i }}</span>
-                        </li>
-                    {% else %}
-                        {% if i == paginator.ELLIPSIS %}
-                            <li class="page-item">
-                                <span class="page-link">{{ paginator.ELLIPSIS }}</span>
+            <nav aria-label="Page navigation container">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">PREV </a></li>
+                    {% endif %}
+                    {% for i in paginator_range %}
+                        {% if page_obj.number == i %}
+                            <li class="active page-item">
+                                <span class="page-link">{{ i }}</span>
                             </li>
                         {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                            </li>
+                            {% if i == paginator.ELLIPSIS %}
+                                <li class="page-item">
+                                    <span class="page-link">{{ paginator.ELLIPSIS }}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT</a></li>
                     {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT</a></li>
-                {% endif %}
-            </ul>
+                </ul>
             </nav>
-            </div>
+
         {% endif %}
         <div class="container">
             <div class="row row-cols-1 row-cols-md-6 g-4">
-                {#                {% for CardHeader in page_obj.object_list %}#}
                 {% for CardHeader in list %}
-                {# note that the list of posts are in the page_obj.object_list not page_obj #}
                 <div class="col">
                     <div class="card h-100">
+                        <a href="pk/{{ CardHeader.id }}">
                         <img src="{% static 'image/user.png' %}" class="card-img-top img-thumbnail" alt="PlaceForImage">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">
                                 {% if CardHeader.first_name == '' %}
@@ -96,6 +72,5 @@
     </div>
     {% endblock%}
 </div>
-
 </body>
 </html>
