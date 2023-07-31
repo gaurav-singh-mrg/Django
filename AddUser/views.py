@@ -12,7 +12,7 @@ from django.urls import reverse
 
 
 class UserDetailView(DetailView):
-    model = 'User'
+    model = User
     template_name = 'AddUser/UserDetailView.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'list'
