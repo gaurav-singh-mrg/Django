@@ -26,12 +26,10 @@
                 <div class="col-md-6">
                     <div class="card-body">
                         <div class="container">
-                            {% for user in userinfo %}
                                 <div class="row">Username : {{ user.username }}</div>
                                 <div class="row">Name : {{ user.first_name }} {{ user.last_name }}</div>
                                 <div class="row">Follower : {{ Follower }}</div>
                                 <div class="row">Following : {{ Following }}</div>
-                            {% endfor %}
                         </div>
                     </div>
                 </div>

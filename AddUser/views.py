@@ -15,7 +15,7 @@ class UserDetailView(DetailView):
     model = User
     template_name = 'AddUser/UserDetailView.html'
     pk_url_kwarg = 'pk'
-    context_object_name = 'list'
+    context_object_name = 'userinfo'
 
     # def get_queryset(self, *args, **kwargs):
     #     print(*args, **kwargs)
