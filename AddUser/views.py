@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from .models import users_info, FollowData
@@ -14,13 +14,22 @@ from django.urls import reverse
 class UserDetailView(DetailView):
     model = User
     template_name = 'AddUser/UserDetailView.html'
-    pk_url_kwarg = 'pk'
     context_object_name = 'userinfo'
 
-    # def get_queryset(self, *args, **kwargs):
-    #     print(*args, **kwargs)
-    #     return 404
-    #     # return User.objects.filter(id=self.args['pk'])
+    def get_context_data(self, **kwargs):
+        print(self.args, self.kwargs)
+        context = super().get_context_data(**kwargs)
+        context['Following'] = 10
+        context['Follower'] = 10
+        print(f'context {context}')
+        return context
+
+    # def get_queryset(self):
+    #     print(self.args, self.kwargs)
+    #     self.object = get_object_or_404(User, id=self.kwargs["pk"])
+    #     print(f'object => {self.object }')
+    #     return User.objects.filter(id=self.kwargs['pk'])
+
 
 
 # todo: fix method decorator login required

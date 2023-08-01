@@ -26,8 +26,8 @@
                 <div class="col-md-6">
                     <div class="card-body">
                         <div class="container">
-                                <div class="row">Username : {{ user.username }}</div>
-                                <div class="row">Name : {{ user.first_name }} {{ user.last_name }}</div>
+                            <div class="row">Username : {{ userinfo.username }}</div>
+                            <div class="row">Name : {{ userinfo.first_name }} {{ userinfo.last_name }}</div>
                                 <div class="row">Follower : {{ Follower }}</div>
                                 <div class="row">Following : {{ Following }}</div>
                         </div>
@@ -44,9 +44,9 @@
         <button type="submit" class="btn btn-outline-primary">
             <a href="tagged">Tagged</a>
         </button>
-        <button type="submit" class="btn btn-outline-primary">
-            <a href="settings">Settings</a>
-        </button>
+        {#        <button type="submit" class="btn btn-outline-primary">#}
+        {#            <a href="settings">Settings</a>#}
+        {#        </button>#}
     </div>
 </div>
 <br>
